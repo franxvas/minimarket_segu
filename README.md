@@ -9,7 +9,7 @@ Sistema web academico para administrar productos, inventario, clientes, proveedo
 - Ventas maestro-detalle que validan y descuentan existencias sin permitir stock negativo.
 - Precios monetarios con `BigDecimal`, validaciones de DNI, RUC, correo, telefono, cantidades y montos.
 - Alertas consultables mediante `stock`, `stockMinimo` y `bajoStock`.
-- Carga realista y repetible con 6,000 ventas; catalogos y maestros dimensionados segun su naturaleza.
+- Carga con 6,000 ventas; catalogos y maestros dimensionados segun su naturaleza.
 - Pruebas JUnit 4, pruebas funcionales OpenXava y Mockito.
 
 ## Versiones verificadas
@@ -38,7 +38,7 @@ Abra `http://localhost:8080/minimarket_segu/`. La cuenta ficticia inicial de des
 
 ## Base de datos y carga academica
 
-La base versionada se encuentra en `data/minimarket_segu-db.*`. Para reconstruir la carga realista con el servidor detenido se exige doble confirmacion:
+La base versionada se encuentra en `data/minimarket_segu-db.*`. Para reconstruir la carga de datos con el servidor detenido se exige doble confirmacion:
 
 ```bash
 mvn compile
@@ -70,9 +70,9 @@ Use Tomcat 9, no Tomcat 10/11, porque OpenXava 7.7.3 trabaja con `javax.*`. Los 
 
 ## Integrantes
 
-1. [COMPLETAR INTEGRANTE 1]
-2. [COMPLETAR INTEGRANTE 2]
-3. [COMPLETAR INTEGRANTE 3]
-4. [COMPLETAR INTEGRANTE 4]
-5. [COMPLETAR INTEGRANTE 5]
-6. [COMPLETAR INTEGRANTE 6]
+1. ANGULO GRANDEZ KATYA
+2. CAMPOS MARCO CRISTIAN LENIN
+3. CAJUSOL BUSTAMANTE JOSE ANTONIO
+4. CHASQUERO CASTILLO SEGUNDO NORBERTO
+5. MOSQUEDA VALLEJOS DONALD IVAN
+6. VASQUEZ SALDAÑA FRANCO ARON

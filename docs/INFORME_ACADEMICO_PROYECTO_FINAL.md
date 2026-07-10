@@ -4,9 +4,15 @@
 **Facultad:** Ingenieria de Sistemas y Mecanica Electrica  
 **Escuela:** Ingenieria de Sistemas  
 **Curso:** Taller de Programacion II  
-**Docente:** [COMPLETAR]  
-**Integrantes:** [COMPLETAR LOS SEIS INTEGRANTES]  
-**PYME:** [COMPLETAR CON INFORMACION DE LA PYME]  
+**Docente:** LUCIANO LLAUCE  
+**Integrantes:** 
+1. ANGULO GRANDEZ KATYA
+2. CAMPOS MARCO CRISTIAN LENIN
+3. CAJUSOL BUSTAMANTE JOSE ANTONIO
+4. CHASQUERO CASTILLO SEGUNDO NORBERTO
+5. MOSQUEDA VALLEJOS DONALD IVAN
+6. VASQUEZ SALDAÑA FRANCO ARON
+**PYME:** MINIMARKET SEGU 
 **Fecha:** 2026
 
 ## Indice
