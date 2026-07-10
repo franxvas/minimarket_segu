@@ -10,5 +10,3 @@ No se fabrican capturas. Ya existen `01-login.png`, `02-menu-principal.png`, `03
 6. `14-usuarios-roles.png`.
 7. `15-pruebas-junit.png`, `16-mockito.png`, `17-jacoco-80.png` desde IDE.
 8. `18-war.png`, `19-tomcat-log.png` y `20-integridad-bd.png` si se requiere evidencia visual adicional.
-
-Use solo datos `demo` y oculte cualquier ruta o credencial personal visible.
