@@ -1,0 +1,87 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.minimarket:minimarket_segu >-------------------
+[INFO] Building minimarket_segu 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- exec:3.1.0:java (default-cli) @ minimarket_segu ---
+ENTIDAD,ESPERADO,ENCONTRADO,ESTADO
+CARGO,8,8,OK
+CATEGORIAPRODUCTO,28,28,OK
+CLIENTE,3000,3000,OK
+COMPRA,900,900,OK
+DETALLE_COMPRA,4500-10800,7730,OK
+EMPLEADO,24,24,OK
+MARCA,120,120,OK
+METODOPAGO,5,5,OK
+PRODUCTO,1800,1800,OK
+PROVEEDOR,80,80,OK
+ROL,6,6,OK
+USUARIOROL,14,14,OK
+USUARIOSISTEMA,12,12,OK
+VENTA,6000,6000,OK
+DETALLE_VENTA,12000-36000,24037,OK
+
+CONTROL,RESULTADO,ESPERADO,ESTADO
+catalogos_con_nombres_duplicados,0,0,OK
+productos_nombre_duplicado,0,0,OK
+clientes_dni_duplicado,0,0,OK
+clientes_ruc_duplicado,0,0,OK
+clientes_correo_duplicado,0,0,OK
+empleados_dni_duplicado,0,0,OK
+empleados_correo_duplicado,0,0,OK
+proveedores_ruc_duplicado,0,0,OK
+proveedores_correo_duplicado,0,0,OK
+usuarios_username_duplicado,0,0,OK
+asignaciones_rol_duplicadas,0,0,OK
+clientes_obligatorios_faltantes,0,0,OK
+proveedores_obligatorios_faltantes,0,0,OK
+productos_obligatorios_faltantes,0,0,OK
+clientes_correo_no_gmail,0,0,OK
+empleados_correo_no_gmail,0,0,OK
+proveedores_correo_no_gmail,0,0,OK
+textos_artificiales_residuales,0,0,OK
+productos_stock_negativo,0,0,OK
+productos_precio_invalido,0,0,OK
+detalles_compra_invalidos,0,0,OK
+detalles_venta_invalidos,0,0,OK
+compras_sin_detalle,0,0,OK
+ventas_sin_detalle,0,0,OK
+compras_no_procesadas,0,0,OK
+ventas_no_procesadas,0,0,OK
+empleados_sin_cargo,0,0,OK
+productos_sin_categoria,0,0,OK
+productos_sin_marca,0,0,OK
+usuarios_sin_empleado,0,0,OK
+roles_usuario_huerfanos,0,0,OK
+compras_huerfanas,0,0,OK
+ventas_huerfanas,0,0,OK
+detalles_compra_huerfanos,0,0,OK
+detalles_venta_huerfanos,0,0,OK
+stock_no_concilia,0,0,OK
+metodos_pago_no_permitidos,0,0,OK
+clientes_sin_correo_en_rango,1,1,OK
+
+METRICA,VALOR
+clientes_con_correo,1949
+clientes_sin_correo,1051
+clientes_mayoristas,249
+fecha_primera_venta,2024-01-01 11:47:10.000000
+fecha_ultima_venta,2026-07-10 22:46:16.000000
+dias_distintos_con_ventas,915
+total_unidades_compradas,279580
+total_unidades_vendidas,60328
+ventas_Efectivo,2477
+ventas_Plin,559
+ventas_Tarjeta_de_credito,637
+ventas_Tarjeta_de_debito,934
+ventas_Yape,1393
+
+RESULTADO_FINAL,VALIDACION_COMPLETA,OK
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.864 s
+[INFO] Finished at: 2026-07-10T05:39:37-05:00
+[INFO] ------------------------------------------------------------------------

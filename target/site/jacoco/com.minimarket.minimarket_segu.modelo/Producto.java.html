@@ -1,78 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Producto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">Producto.java</span></div><h1>Producto.java</h1><pre class="source lang-java linenums">package com.minimarket.minimarket_segu.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.AssertTrue;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.Depends;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Money;
-import org.openxava.annotations.ReadOnly;
-import org.openxava.annotations.Required;
+import java.math.BigDecimal;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import lombok.*;
+import org.openxava.annotations.*;
 
+/**
+ * Entidad que representa un producto del minimarket.
+ * Incluye precios de compra, venta y mayorista, stock y relaciones con categoría y marca.
+ */
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(name = &quot;uk_producto_nombre&quot;, columnNames = &quot;nombre&quot;),
+    indexes = {@Index(name = &quot;idx_producto_categoria&quot;, columnList = &quot;categoria_id&quot;), @Index(name = &quot;idx_producto_marca&quot;, columnList = &quot;marca_id&quot;), @Index(name = &quot;idx_producto_stock&quot;, columnList = &quot;stock&quot;)}
+)
 @Getter @Setter
-<span class="fc" id="L20">public class Producto {</span>
+@Tab(properties = &quot;nombre, precioVenta, precioMayorista, stock, stockMinimo, categoria.nombre, marca.nombre, ganancia, bajoStock&quot;)
+@View(members =
+    &quot;InformacionGeneral [&quot; +
+        &quot;nombre; descripcion&quot; +
+    &quot;];&quot; +
+    &quot;PreciosStock [&quot; +
+        &quot;precioCompra, precioVenta, precioMayorista;&quot; +
+        &quot;stock, stockMinimo; ganancia, bajoStock&quot; +
+    &quot;];&quot; +
+    &quot;Clasificación [&quot; +
+        &quot;categoria; marca&quot; +
+    &quot;]&quot;
+)
+<span class="fc" id="L32">public class Producto {</span>
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 50)
-    private String nombre;
+    @Column(length = 50, nullable = false)
+    @NotBlank(message = &quot;El nombre del producto es obligatorio&quot;)
+    String nombre;
 
     @Column(length = 200)
-    private String descripcion;
+    String descripcion;
 
     @Required
     @Money
-    private double precioCompra;
+    @DecimalMin(value = &quot;0.00&quot;, message = &quot;El precio de compra no puede ser negativo&quot;)
+    @Column(nullable = false, precision = 12, scale = 2)
+    BigDecimal precioCompra;
 
     @Required
     @Money
-    private double precioVenta;
+    @DecimalMin(value = &quot;0.01&quot;, message = &quot;El precio de venta debe ser mayor a cero&quot;)
+    @Column(nullable = false, precision = 12, scale = 2)
+    BigDecimal precioVenta;
 
     @Required
     @Money
-    private double precioMayorista;
+    @DecimalMin(value = &quot;0.00&quot;, message = &quot;El precio mayorista no puede ser negativo&quot;)
+    @Column(nullable = false, precision = 12, scale = 2)
+    BigDecimal precioMayorista;
 
     @Required
-    private int stock;
+    @Min(value = 0, message = &quot;El stock no puede ser negativo&quot;)
+    int stock;
 
-    @ManyToOne
     @Required
-    private CategoriaProducto categoria;
+    @Min(value = 0, message = &quot;El stock minimo no puede ser negativo&quot;)
+    int stockMinimo;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = &quot;categoria_id&quot;, nullable = false)
     @Required
-    private Marca marca;
-    
-    @AssertTrue(message=&quot;El precio de compra no puede ser negativo&quot;)
-    public boolean isPrecioCompraValido() {
-<span class="fc bfc" id="L58" title="All 2 branches covered.">        return precioCompra &gt;= 0;</span>
-    }
-    
-    @AssertTrue(message=&quot;El precio de venta no puede ser negativo&quot;)
-    public boolean isPrecioVentaValido() {
-<span class="fc bfc" id="L63" title="All 2 branches covered.">        return precioVenta &gt;= 0;</span>
-    }
+    @DescriptionsList
+    CategoriaProducto categoria;
 
-    @AssertTrue(message=&quot;El precio mayorista no puede ser negativo&quot;)
-    public boolean isPrecioMayoristaValido() {
-<span class="fc bfc" id="L68" title="All 2 branches covered.">        return precioMayorista &gt;= 0;</span>
-    }
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = &quot;marca_id&quot;, nullable = false)
+    @Required
+    @DescriptionsList
+    Marca marca;
 
     @Depends(&quot;precioCompra, precioVenta&quot;)
     @ReadOnly
     @Money
-    public double getGanancia() {
-<span class="fc" id="L75">        return precioVenta - precioCompra;</span>
+    public BigDecimal getGanancia() {
+<span class="pc bpc" id="L89" title="2 of 4 branches missed.">        if (precioVenta == null || precioCompra == null) return BigDecimal.ZERO;</span>
+<span class="fc" id="L90">        return precioVenta.subtract(precioCompra);</span>
+    }
+
+    @AssertTrue(message = &quot;El precio de venta debe ser mayor o igual al precio de compra&quot;)
+    public boolean isPrecioVentaMayorQueCompra() {
+<span class="pc bpc" id="L95" title="2 of 4 branches missed.">        if (precioVenta == null || precioCompra == null) return true;</span>
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">        return precioVenta.compareTo(precioCompra) &gt;= 0;</span>
+    }
+
+    @Depends(&quot;stock, stockMinimo&quot;)
+    @ReadOnly
+    public boolean isBajoStock() {
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">        return stock &lt;= stockMinimo;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

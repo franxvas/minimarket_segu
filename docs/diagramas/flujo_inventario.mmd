@@ -1,0 +1,8 @@
+stateDiagram-v2
+  [*] --> StockActual
+  StockActual --> StockMayor: Compra procesada
+  StockActual --> Validacion: Venta solicitada
+  Validacion --> StockActual: Stock insuficiente
+  Validacion --> StockMenor: Stock suficiente
+  StockMayor --> [*]
+  StockMenor --> [*]

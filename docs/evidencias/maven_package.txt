@@ -1,0 +1,49 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.minimarket:minimarket_segu >-------------------
+[INFO] Building minimarket_segu 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.7.0:unpack (unpack-agents-examples) @ minimarket_segu ---
+[INFO] Configured Artifact: org.openxava:openxava-agents-examples:7.7.3:jar
+[INFO] openxava-agents-examples-7.7.3.jar already unpacked.
+[INFO] 
+[INFO] --- jacoco:0.8.14:prepare-agent (prepare-agent) @ minimarket_segu ---
+[INFO] Skipping JaCoCo execution because property jacoco.skip is set.
+[INFO] argLine set to empty
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ minimarket_segu ---
+[INFO] Copying 27 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.12.0:compile (default-compile) @ minimarket_segu ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ minimarket_segu ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.12.0:testCompile (default-testCompile) @ minimarket_segu ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ minimarket_segu ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jacoco:0.8.14:report (report) @ minimarket_segu ---
+[INFO] Skipping JaCoCo execution because property jacoco.skip is set.
+[INFO] 
+[INFO] --- war:3.3.2:war (default-war) @ minimarket_segu ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [minimarket_segu] in [/Users/Fran/Downloads/minimarket_segu/target/minimarket_segu]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/Users/Fran/Downloads/minimarket_segu/src/main/webapp]
+[INFO] Building war: /Users/Fran/Downloads/minimarket_segu/target/minimarket_segu.war
+[INFO] 
+[INFO] --- dependency:3.7.0:unpack (unpack) @ minimarket_segu ---
+[INFO] Configured Artifact: org.openxava:openxava:7.7.3:jar
+[INFO] openxava-7.7.3.jar already unpacked.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.006 s
+[INFO] Finished at: 2026-07-10T05:06:10-05:00
+[INFO] ------------------------------------------------------------------------

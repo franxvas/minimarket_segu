@@ -1,0 +1,8 @@
+flowchart LR
+  ADM["Administrador"] --> M1["Mantener catalogos"]
+  ADM --> M2["Administrar usuarios y roles"]
+  CAJ["Cajero"] --> V["Registrar y procesar venta"]
+  ALM["Encargado de compras"] --> C["Registrar y procesar compra"]
+  ALM --> P["Consultar stock bajo"]
+  V --> I["Actualizar inventario"]
+  C --> I

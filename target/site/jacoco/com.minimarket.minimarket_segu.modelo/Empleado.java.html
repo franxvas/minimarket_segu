@@ -1,56 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Empleado.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">Empleado.java</span></div><h1>Empleado.java</h1><pre class="source lang-java linenums">/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.minimarket.minimarket_segu.modelo;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Empleado.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">Empleado.java</span></div><h1>Empleado.java</h1><pre class="source lang-java linenums">package com.minimarket.minimarket_segu.modelo;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Required;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
+
 /**
- *
- * @author segun
+ * Entidad que representa un empleado del minimarket.
+ * Vinculado a un Cargo y puede tener un UsuarioSistema asociado.
  */
 @Entity
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(name = &quot;uk_empleado_dni&quot;, columnNames = &quot;dni&quot;),
+        @UniqueConstraint(name = &quot;uk_empleado_correo&quot;, columnNames = &quot;correo&quot;)
+    },
+    indexes = @Index(name = &quot;idx_empleado_nombre&quot;, columnList = &quot;nombre&quot;)
+)
 @Getter @Setter
-<span class="nc" id="L26">public class Empleado {</span>
+@View(members =
+    &quot;DatosPersonales [&quot; +
+        &quot;nombre; dni;&quot; +
+        &quot;direccion&quot; +
+    &quot;];&quot; +
+    &quot;Contacto [&quot; +
+        &quot;telefono, correo&quot; +
+    &quot;];&quot; +
+    &quot;cargo, fechaIngreso&quot;
+)
+<span class="fc" id="L33">public class Empleado {</span>
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 80)
-    private String nombre;
+    @Column(length = 80, nullable = false)
+    @NotBlank(message = &quot;El nombre del empleado es obligatorio&quot;)
+    String nombre;
 
     @Required
-    @Column(length = 8)
-    private String dni;
+    @Column(length = 8, nullable = false)
+    @Pattern(regexp = &quot;\\d{8}&quot;, message = &quot;El DNI debe tener exactamente 8 dígitos numéricos&quot;)
+    String dni;
 
     @Column(length = 120)
-    private String direccion;
+    String direccion;
 
     @Column(length = 15)
-    private String telefono;
+    @Pattern(regexp = &quot;(\\d{6,15})?&quot;, message = &quot;El teléfono debe contener entre 6 y 15 dígitos&quot;)
+    String telefono;
 
     @Column(length = 60)
-    private String correo;
+    @Email(message = &quot;El correo electrónico no tiene un formato válido&quot;)
+    String correo;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = &quot;cargo_id&quot;, nullable = false)
     @Required
-    private Cargo cargo;
+    @DescriptionsList
+    Cargo cargo;
 
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fechaIngreso;
+    @ReadOnly
+    Date fechaIngreso;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

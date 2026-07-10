@@ -1,0 +1,17 @@
+classDiagram
+  Producto --> CategoriaProducto
+  Producto --> Marca
+  Empleado --> Cargo
+  UsuarioSistema --> Empleado
+  UsuarioRol --> UsuarioSistema
+  UsuarioRol --> Rol
+  Compra --> Proveedor
+  Compra *-- DetalleCompra
+  DetalleCompra --> Producto
+  Venta --> Cliente
+  Venta --> Empleado
+  Venta --> MetodoPago
+  Venta *-- DetalleVenta
+  DetalleVenta --> Producto
+  InventarioServicio --> InventarioRepositorio
+  JpaInventarioRepositorio ..|> InventarioRepositorio

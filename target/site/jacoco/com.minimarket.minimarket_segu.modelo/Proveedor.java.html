@@ -1,65 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Proveedor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">Proveedor.java</span></div><h1>Proveedor.java</h1><pre class="source lang-java linenums">/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.minimarket.minimarket_segu.modelo;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Proveedor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">Proveedor.java</span></div><h1>Proveedor.java</h1><pre class="source lang-java linenums">package com.minimarket.minimarket_segu.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Depends;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Money;
-import org.openxava.annotations.ReadOnly;
-import org.openxava.annotations.Required;
+import java.util.Date;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
 
 /**
- *
- * @author segun
+ * Entidad que representa un proveedor del minimarket.
+ * Almacena datos de contacto, RUC y estado activo/inactivo.
  */
 @Entity
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(name = &quot;uk_proveedor_ruc&quot;, columnNames = &quot;ruc&quot;),
+        @UniqueConstraint(name = &quot;uk_proveedor_correo&quot;, columnNames = &quot;correo&quot;)
+    },
+    indexes = @Index(name = &quot;idx_proveedor_nombre&quot;, columnList = &quot;nombre&quot;)
+)
 @Getter @Setter
-<span class="nc" id="L28">public class Proveedor {</span>
+@Tab(properties = &quot;nombre, ruc, telefono, correo, estado&quot;)
+@View(members =
+    &quot;DatosProveedor [&quot; +
+        &quot;nombre; ruc;&quot; +
+        &quot;direccion&quot; +
+    &quot;];&quot; +
+    &quot;Contacto [&quot; +
+        &quot;telefono, correo&quot; +
+    &quot;];&quot; +
+    &quot;estado, fechaRegistro&quot;
+)
+<span class="fc" id="L34">public class Proveedor {</span>
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 80)
-    private String nombre;
+    @Column(length = 80, nullable = false)
+    @NotBlank(message = &quot;El nombre del proveedor es obligatorio&quot;)
+    String nombre;
 
     @Required
-    @Column(length = 11)
-    private String ruc;
+    @Column(length = 11, nullable = false)
+    @Pattern(regexp = &quot;\\d{11}&quot;, message = &quot;El RUC debe tener exactamente 11 digitos numericos&quot;)
+    String ruc;
 
     @Column(length = 120)
-    private String direccion;
+    String direccion;
 
     @Column(length = 15)
-    private String telefono;
+    @Pattern(regexp = &quot;(\\d{6,15})?&quot;, message = &quot;El telefono debe contener entre 6 y 15 digitos&quot;)
+    String telefono;
 
     @Column(length = 60)
-    private String correo;
+    @Email(message = &quot;El correo electronico no tiene un formato valido&quot;)
+    String correo;
 
     @Required
-    private boolean estado;
+    boolean estado;
 
     @Required
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private java.util.Date fechaRegistro;
-
-    @Depends(&quot;id&quot;)
     @ReadOnly
-    @Money
-    public double getTotalComprado() {
-<span class="nc" id="L62">        return 0; // luego lo calculamos con lógica real</span>
-    }
+    Date fechaRegistro;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

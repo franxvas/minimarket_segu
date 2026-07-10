@@ -1,0 +1,15 @@
+erDiagram
+  CARGO ||--o{ EMPLEADO : ocupa
+  CATEGORIAPRODUCTO ||--o{ PRODUCTO : clasifica
+  MARCA ||--o{ PRODUCTO : identifica
+  EMPLEADO ||--|| USUARIOSISTEMA : posee
+  USUARIOSISTEMA ||--o{ USUARIOROL : recibe
+  ROL ||--o{ USUARIOROL : asigna
+  PROVEEDOR ||--o{ COMPRA : abastece
+  COMPRA ||--|{ DETALLE_COMPRA : contiene
+  PRODUCTO ||--o{ DETALLE_COMPRA : comprado
+  CLIENTE ||--o{ VENTA : realiza
+  EMPLEADO ||--o{ VENTA : registra
+  METODOPAGO ||--o{ VENTA : utiliza
+  VENTA ||--|{ DETALLE_VENTA : contiene
+  PRODUCTO ||--o{ DETALLE_VENTA : vendido
