@@ -1,65 +1,70 @@
 package com.minimarket.minimarket_segu.modelo;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Depends;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.ListProperties;
-import org.openxava.annotations.Money;
-import org.openxava.annotations.ReadOnly;
-import org.openxava.annotations.Required;
+import javax.persistence.*;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
 
+/**
+ * Entidad que representa una compra realizada a un proveedor.
+ * Incluye datos del comprobante, proveedor y detalles de compra.
+ */
 @Entity
 @Getter @Setter
+@View(members =
+    "Datos de la Compra [" +
+        "fecha, tipoComprobante, numeroComprobante;" +
+        "proveedor" +
+    "];" +
+    "estado, usuarioRegistro;" +
+    "detalles;" +
+    "total"
+)
 public class Compra {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fecha;
+    Date fecha;
 
     @ManyToOne
     @Required
-    private Proveedor proveedor;
+    @DescriptionsList
+    Proveedor proveedor;
 
     @Required
     @Column(length = 20)
-    private String tipoComprobante;
+    String tipoComprobante;
 
     @Required
     @Column(length = 20)
-    private String numeroComprobante;
+    String numeroComprobante;
 
     @Required
-    private boolean estado;
+    boolean estado;
 
     @Column(length = 30)
-    private String usuarioRegistro;
+    @ReadOnly
+    String usuarioRegistro;
 
-    @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
+    @ElementCollection
     @ListProperties("producto.nombre, cantidad, precio, subtotal")
-    private Collection<DetalleCompra> detalles;
+    Collection<DetalleCompra> detalles;
 
     @Depends("detalles.subtotal")
     @ReadOnly
     @Money
-    public double getTotal() {
-        if (detalles == null) return 0;
-        return detalles.stream().mapToDouble(DetalleCompra::getSubtotal).sum();
+    public BigDecimal getTotal() {
+        if (detalles == null) return BigDecimal.ZERO;
+        return detalles.stream()
+            .map(DetalleCompra::getSubtotal)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

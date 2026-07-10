@@ -1,17 +1,21 @@
 package com.minimarket.minimarket_segu.modelo;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import lombok.Getter;
-import lombok.Setter;
+import javax.validation.constraints.*;
+import lombok.*;
 import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
 
+/**
+ * Entidad que representa una venta realizada en el minimarket.
+ * Incluye datos del comprobante, cliente, empleado, metodo de pago y detalles.
+ */
 @Entity
 @Getter @Setter
-@View(members = 
+@View(members =
     "Datos del Comprobante [" +
         "fecha, tipoComprobante, numeroComprobante;" +
         "cliente, empleado, metodoPago" +
@@ -20,29 +24,33 @@ import org.openxava.calculators.CurrentDateCalculator;
     "total"
 )
 public class Venta {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fecha;
+    Date fecha;
 
     @ManyToOne
     @Required
-    private Cliente cliente;
+    @DescriptionsList
+    Cliente cliente;
 
     @ManyToOne
     @Required
-    private Empleado empleado;
+    @DescriptionsList
+    Empleado empleado;
 
     @ManyToOne
     @Required
-    private MetodoPago metodoPago;
+    @DescriptionsList
+    MetodoPago metodoPago;
 
     @Required
-    private TipoComprobante tipoComprobante;
+    TipoComprobante tipoComprobante;
 
     public enum TipoComprobante {
         BOLETA, FACTURA, TICKET
@@ -50,13 +58,13 @@ public class Venta {
 
     @Required
     @Column(length = 20)
-    private String numeroComprobante;
+    String numeroComprobante;
 
-    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+    @ElementCollection
     @ListProperties("producto.nombre, cantidad, precio, descuentoVolumen, subtotal")
-    private Collection<DetalleVenta> detalles;
+    Collection<DetalleVenta> detalles;
 
-    @AssertTrue(message = "Para emitir una FACTURA, el cliente debe tener un RUC registrado en su ficha")
+    @AssertTrue(message = "Para emitir una FACTURA, el cliente debe tener un RUC registrado")
     public boolean isRucValidoParaFactura() {
         if (tipoComprobante == TipoComprobante.FACTURA) {
             if (cliente == null) return false;
@@ -69,8 +77,10 @@ public class Venta {
     @Depends("detalles.subtotal")
     @ReadOnly
     @Money
-    public double getTotal() {
-        if (detalles == null) return 0;
-        return detalles.stream().mapToDouble(DetalleVenta::getSubtotal).sum();
+    public BigDecimal getTotal() {
+        if (detalles == null) return BigDecimal.ZERO;
+        return detalles.stream()
+            .map(DetalleVenta::getSubtotal)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

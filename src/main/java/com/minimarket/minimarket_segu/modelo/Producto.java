@@ -1,77 +1,83 @@
 package com.minimarket.minimarket_segu.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.AssertTrue;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.Depends;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Money;
-import org.openxava.annotations.ReadOnly;
-import org.openxava.annotations.Required;
+import java.math.BigDecimal;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import lombok.*;
+import org.openxava.annotations.*;
 
+/**
+ * Entidad que representa un producto del minimarket.
+ * Incluye precios de compra, venta y mayorista, stock y relaciones con categoría y marca.
+ */
 @Entity
 @Getter @Setter
+@View(members =
+    "Información General [" +
+        "nombre; descripcion" +
+    "];" +
+    "Precios y Stock [" +
+        "precioCompra, precioVenta, precioMayorista;" +
+        "stock; ganancia" +
+    "];" +
+    "Clasificación [" +
+        "categoria; marca" +
+    "]"
+)
 public class Producto {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
     @Column(length = 50)
-    private String nombre;
+    String nombre;
 
     @Column(length = 200)
-    private String descripcion;
+    String descripcion;
 
     @Required
     @Money
-    private double precioCompra;
+    @DecimalMin(value = "0.00", message = "El precio de compra no puede ser negativo")
+    BigDecimal precioCompra;
 
     @Required
     @Money
-    private double precioVenta;
+    @DecimalMin(value = "0.01", message = "El precio de venta debe ser mayor a cero")
+    BigDecimal precioVenta;
 
     @Required
     @Money
-    private double precioMayorista;
+    @DecimalMin(value = "0.00", message = "El precio mayorista no puede ser negativo")
+    BigDecimal precioMayorista;
 
     @Required
-    private int stock;
+    @Min(value = 0, message = "El stock no puede ser negativo")
+    int stock;
 
     @ManyToOne
     @Required
-    private CategoriaProducto categoria;
+    @DescriptionsList
+    CategoriaProducto categoria;
 
     @ManyToOne
     @Required
-    private Marca marca;
-    
-    @AssertTrue(message="El precio de compra no puede ser negativo")
-    public boolean isPrecioCompraValido() {
-        return precioCompra >= 0;
-    }
-    
-    @AssertTrue(message="El precio de venta no puede ser negativo")
-    public boolean isPrecioVentaValido() {
-        return precioVenta >= 0;
-    }
-
-    @AssertTrue(message="El precio mayorista no puede ser negativo")
-    public boolean isPrecioMayoristaValido() {
-        return precioMayorista >= 0;
-    }
+    @DescriptionsList
+    Marca marca;
 
     @Depends("precioCompra, precioVenta")
     @ReadOnly
     @Money
-    public double getGanancia() {
-        return precioVenta - precioCompra;
+    public BigDecimal getGanancia() {
+        if (precioVenta == null || precioCompra == null) return BigDecimal.ZERO;
+        return precioVenta.subtract(precioCompra);
+    }
+
+    @AssertTrue(message = "El precio de venta debe ser mayor o igual al precio de compra")
+    public boolean isPrecioVentaMayorQueCompra() {
+        if (precioVenta == null || precioCompra == null) return true;
+        return precioVenta.compareTo(precioCompra) >= 0;
     }
 }

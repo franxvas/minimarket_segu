@@ -1,69 +1,52 @@
 package com.minimarket.minimarket_segu.modelo;
 
+import java.math.BigDecimal;
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import lombok.Getter;
-import lombok.Setter;
+import javax.validation.constraints.*;
+import lombok.*;
 import org.openxava.annotations.*;
 
-@Entity
+/**
+ * Clase embebida que representa un detalle de venta.
+ * Almacena producto, cantidad, precio unitario y calcula subtotales.
+ * El precio se congela al momento de registrar la venta.
+ */
+@Embeddable
 @Getter @Setter
 public class DetalleVenta {
-    @Id
-    @Hidden
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @Required
-    private Venta venta;
-
-    @ManyToOne
-    @Required
-    private Producto producto;
+    @DescriptionsList
+    Producto producto;
 
     @Required
-    private int cantidad;
+    @Min(value = 1, message = "La cantidad debe ser mayor a cero")
+    int cantidad;
 
-    @Depends("producto, venta.cliente")
+    @Required
+    @Money
+    @DecimalMin(value = "0.01", message = "El precio debe ser mayor a cero")
+    BigDecimal precio;
+
+    @Depends("cantidad, precio")
     @ReadOnly
     @Money
-    public double getPrecio() {
-        if (producto == null) return 0;
-        
-        if (venta != null && venta.getCliente() != null && 
-            venta.getCliente().getTipoCliente() == Cliente.TipoCliente.MAYORISTA) {
-            return producto.getPrecioMayorista();
+    public BigDecimal getDescuentoVolumen() {
+        if (precio == null) return BigDecimal.ZERO;
+        if (cantidad >= 12) {
+            BigDecimal bruto = precio.multiply(BigDecimal.valueOf(cantidad));
+            return bruto.multiply(new BigDecimal("0.05"));
         }
-        
-        return producto.getPrecioVenta();
-    }
-
-    @Depends("cantidad, producto")
-    @ReadOnly
-    @Money
-    public double getDescuentoVolumen() {
-        if (cantidad >= 12) { 
-            return (getPrecio() * cantidad) * 0.05; 
-        }
-        return 0;
+        return BigDecimal.ZERO;
     }
 
     @Depends("cantidad, precio, descuentoVolumen")
     @ReadOnly
     @Money
-    public double getSubtotal() {
-        return (cantidad * getPrecio()) - getDescuentoVolumen();
-    }
-
-    @AssertTrue(message="La cantidad debe ser mayor a cero")
-    public boolean isCantidadValida() {
-        return cantidad > 0;
-    }
-
-    @AssertTrue(message="No hay suficiente stock disponible en el inventario para este producto")
-    public boolean isStockSuficiente() {
-        if (producto == null) return true;
-        return producto.getStock() >= cantidad;
+    public BigDecimal getSubtotal() {
+        if (precio == null) return BigDecimal.ZERO;
+        BigDecimal bruto = precio.multiply(BigDecimal.valueOf(cantidad));
+        return bruto.subtract(getDescuentoVolumen());
     }
 }
