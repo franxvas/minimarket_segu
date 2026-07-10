@@ -1,70 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DetalleVenta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">DetalleVenta.java</span></div><h1>DetalleVenta.java</h1><pre class="source lang-java linenums">package com.minimarket.minimarket_segu.modelo;
 
+import java.math.BigDecimal;
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import lombok.Getter;
-import lombok.Setter;
+import javax.validation.constraints.*;
+import lombok.*;
 import org.openxava.annotations.*;
 
-@Entity
+/**
+ * Clase embebida que representa un detalle de venta.
+ * Almacena producto, cantidad, precio unitario y calcula subtotales.
+ * El precio se congela al momento de registrar la venta.
+ */
+@Embeddable
 @Getter @Setter
-<span class="fc" id="L11">public class DetalleVenta {</span>
-    @Id
-    @Hidden
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+<span class="fc" id="L16">public class DetalleVenta {</span>
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = &quot;producto_id&quot;, nullable = false)
     @Required
-    private Venta venta;
-
-    @ManyToOne
-    @Required
-    private Producto producto;
+    @DescriptionsList
+    Producto producto;
 
     @Required
-    private int cantidad;
+    @Min(value = 1, message = &quot;La cantidad debe ser mayor a cero&quot;)
+    int cantidad;
 
-    @Depends(&quot;producto, venta.cliente&quot;)
+    @Required
+    @Money
+    @DecimalMin(value = &quot;0.01&quot;, message = &quot;El precio debe ser mayor a cero&quot;)
+    @Column(nullable = false, precision = 12, scale = 2)
+    BigDecimal precio;
+
+    @Depends(&quot;cantidad, precio&quot;)
     @ReadOnly
     @Money
-    public double getPrecio() {
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (producto == null) return 0;</span>
-        
-<span class="fc bfc" id="L34" title="All 4 branches covered.">        if (venta != null &amp;&amp; venta.getCliente() != null &amp;&amp; </span>
-<span class="pc bpc" id="L35" title="1 of 2 branches missed.">            venta.getCliente().getTipoCliente() == Cliente.TipoCliente.MAYORISTA) {</span>
-<span class="fc" id="L36">            return producto.getPrecioMayorista();</span>
+    public BigDecimal getDescuentoVolumen() {
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if (precio == null) return BigDecimal.ZERO;</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (cantidad &gt;= 12) {</span>
+<span class="fc" id="L40">            BigDecimal bruto = precio.multiply(BigDecimal.valueOf(cantidad));</span>
+<span class="fc" id="L41">            return bruto.multiply(new BigDecimal(&quot;0.05&quot;));</span>
         }
-        
-<span class="fc" id="L39">        return producto.getPrecioVenta();</span>
-    }
-
-    @Depends(&quot;cantidad, producto&quot;)
-    @ReadOnly
-    @Money
-    public double getDescuentoVolumen() {
-<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (cantidad &gt;= 12) { </span>
-<span class="fc" id="L47">            return (getPrecio() * cantidad) * 0.05; </span>
-        }
-<span class="nc" id="L49">        return 0;</span>
+<span class="nc" id="L43">        return BigDecimal.ZERO;</span>
     }
 
     @Depends(&quot;cantidad, precio, descuentoVolumen&quot;)
     @ReadOnly
     @Money
-    public double getSubtotal() {
-<span class="fc" id="L56">        return (cantidad * getPrecio()) - getDescuentoVolumen();</span>
-    }
-
-    @AssertTrue(message=&quot;La cantidad debe ser mayor a cero&quot;)
-    public boolean isCantidadValida() {
-<span class="fc bfc" id="L61" title="All 2 branches covered.">        return cantidad &gt; 0;</span>
-    }
-
-    @AssertTrue(message=&quot;No hay suficiente stock disponible en el inventario para este producto&quot;)
-    public boolean isStockSuficiente() {
-<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (producto == null) return true;</span>
-<span class="fc bfc" id="L67" title="All 2 branches covered.">        return producto.getStock() &gt;= cantidad;</span>
+    public BigDecimal getSubtotal() {
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        if (precio == null) return BigDecimal.ZERO;</span>
+<span class="fc" id="L51">        BigDecimal bruto = precio.multiply(BigDecimal.valueOf(cantidad));</span>
+<span class="fc" id="L52">        return bruto.subtract(getDescuentoVolumen());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

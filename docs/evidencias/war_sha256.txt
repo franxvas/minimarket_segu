@@ -1,0 +1,1 @@
+c279a88a61e683ef609394cf5abb2e2058220bf3c58ba419c499eb3ab75da194  target/minimarket_segu.war

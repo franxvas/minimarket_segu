@@ -1,0 +1,8 @@
+HTTP/1.1 200 
+Set-Cookie: JSESSIONID=417A3DC03A322E0693AEBED30FD90E05; Path=/minimarket_segu; HttpOnly; SameSite=Lax
+Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-64eb301a-624d-4ff1-920e-3125e02e44a3' ; style-src 'self' 'nonce-64eb301a-624d-4ff1-920e-3125e02e44a3' ; img-src 'self' data: blob: https://b.tile.opentopomap.org/ ; worker-src 'self' blob:; frame-src 'self' ; frame-ancestors 'self'; form-action 'self'; font-src 'self' data:
+X-Content-Type-Options: nosniff
+Content-Type: text/html;charset=UTF-8
+Content-Length: 645
+Date: Fri, 10 Jul 2026 09:54:26 GMT
+

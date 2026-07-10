@@ -1,0 +1,93 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.minimarket:minimarket_segu >-------------------
+[INFO] Building minimarket_segu 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- exec:3.1.0:java (default-cli) @ minimarket_segu ---
+[Server@b203f7a]: Initiating startup sequence...
+[Server@b203f7a]: Server socket opened successfully in 8 ms.
+Starting application...
+Jul 10, 2026 4:57:56 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-nio-8080"]
+Jul 10, 2026 4:57:56 AM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service [Tomcat]
+Jul 10, 2026 4:57:56 AM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet engine: [Apache Tomcat/9.0.118]
+Jul 10, 2026 4:57:57 AM org.apache.catalina.startup.ContextConfig getDefaultWebXmlFragment
+INFO: No global web.xml found
+Jul 10, 2026 4:57:57 AM org.apache.jasper.servlet.TldScanner scanJars
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Jul 10, 2026 4:57:57 AM org.directwebremoting.log.startup logStartup
+INFO: Starting: DWRServlet v3.0.3-dev on Apache Tomcat/9.0.118 / JDK 25.0.2 from Homebrew at /minimarket_segu
+[Server@b203f7a]: Database [index=0, id=0, db=file:data/minimarket_segu-db, alias=] opened successfully in 925 ms.
+[Server@b203f7a]: Startup sequence completed in 935 ms.
+[Server@b203f7a]: 2026-07-10 09:57:57.485 HSQLDB server 2.7.4 is online on port 1666
+[Server@b203f7a]: To close normally, connect and execute SHUTDOWN SQL
+[Server@b203f7a]: From command line, use [Ctrl]+[C] to abort abruptly
+Jul 10, 2026 4:57:57 AM org.directwebremoting.log.startup resolveMultipleImplementations
+INFO: Starting: Using container abstraction org.directwebremoting.server.servlet2.Servlet24ContainerAbstraction
+Jul 10, 2026 4:57:57 AM org.directwebremoting.impl.DTDEntityResolver resolveEntity
+WARNING: Deprecated public id in dwr.xml. Use: <!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr//dwr30.dtd">
+Jul 10, 2026 4:57:57 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-8080"]
+Application started. Go to http://localhost:8080/minimarket_segu
+Jul 10, 2026 4:58:23 AM org.openxava.controller.ModuleManager <clinit>
+INFO: OpenXava 7.7.3 (2026-6-5)
+Jul 10, 2026 4:58:23 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 null MODULE:SignIn
+Jul 10, 2026 4:58:24 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=470 ms
+Jul 10, 2026 4:59:28 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin SignIn.signIn 122ms
+Jul 10, 2026 4:59:28 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=132 ms
+Jul 10, 2026 4:59:28 AM org.openxava.component.parse.AnnotatedClassParser obtainManagedClassNamesFromFileClassPath
+WARNING: Ficheros ancla para obtener clases gestionadas por JPA no encontrados: xava.properties, application.xml, aplicacion.xml
+Jul 10, 2026 4:59:29 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Producto
+Jul 10, 2026 4:59:29 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 4:59:29 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 4:59:29 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 4:59:29 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=95
+Jul 10, 2026 4:59:30 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=676 ms
+Jul 10, 2026 4:59:49 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:FirstSteps
+Jul 10, 2026 4:59:49 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=131 ms
+Jul 10, 2026 5:00:02 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Compra
+Jul 10, 2026 5:00:03 AM org.openxava.util.Labels getWithoutCache
+WARNING: Imposible internacionalizar elemento con id Calendar
+Jul 10, 2026 5:00:03 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Proveedor e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:00:03 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.fecha, e_proveedor.nombre, e.tipoComprobante, e.numeroComprobante, e.procesada, 0 from Compra e join e.proveedor e_proveedor con argumentos
+Jul 10, 2026 5:00:03 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=50
+Jul 10, 2026 5:00:03 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=353 ms
+Jul 10, 2026 5:00:05 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Venta
+Jul 10, 2026 5:00:05 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Cliente e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:00:05 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Empleado e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:00:05 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from MetodoPago e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:00:05 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.fecha, e_cliente.nombre, e_empleado.nombre, e_metodoPago.nombre, e.tipoComprobante, e.numeroComprobante, e.procesada, 0 from Venta e join e.cliente e_cliente join e.empleado e_empleado join e.metodoPago e_metodoPago con argumentos
+Jul 10, 2026 5:00:05 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=40
+Jul 10, 2026 5:00:05 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=530 ms
+Jul 10, 2026 5:00:31 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.viewDetail 168ms
+Jul 10, 2026 5:00:32 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=793 ms

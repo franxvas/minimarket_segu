@@ -1,3 +1,7 @@
+/Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/acciones/ProcesarCompra.java
+/Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/acciones/ProcesarVenta.java
+/Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/datos/CargaMasivaDatos.java
+/Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/datos/VerificarBaseDatos.java
 /Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/modelo/Cargo.java
 /Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/modelo/CategoriaProducto.java
 /Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/modelo/Cliente.java
@@ -15,3 +19,7 @@
 /Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/modelo/Venta.java
 /Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/run/DBManager.java
 /Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/run/minimarket_segu.java
+/Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/servicios/InventarioRepositorio.java
+/Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/servicios/InventarioServicio.java
+/Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/servicios/JpaInventarioRepositorio.java
+/Users/Fran/Downloads/minimarket_segu/src/main/java/com/minimarket/minimarket_segu/servicios/ReglaNegocioException.java

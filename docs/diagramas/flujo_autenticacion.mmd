@@ -1,0 +1,6 @@
+flowchart TD
+  A["Abrir aplicacion"] --> B["NaviOX solicita usuario y clave"]
+  B --> C{"Credenciales validas"}
+  C -- No --> D["Mensaje y nuevo intento"]
+  C -- Si --> E["Crear sesion"]
+  E --> F["Mostrar modulos autorizados"]

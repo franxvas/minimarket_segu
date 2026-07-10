@@ -1,52 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioSistema.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">UsuarioSistema.java</span></div><h1>UsuarioSistema.java</h1><pre class="source lang-java linenums">/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.minimarket.minimarket_segu.modelo;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioSistema.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">UsuarioSistema.java</span></div><h1>UsuarioSistema.java</h1><pre class="source lang-java linenums">package com.minimarket.minimarket_segu.modelo;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Required;
+import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
+
 /**
- *
- * @author segun
+ * Entidad que representa un usuario del sistema con credenciales de acceso.
+ * Vinculado a un Empleado.
  */
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(name = &quot;uk_usuario_username&quot;, columnNames = &quot;username&quot;),
+    indexes = @Index(name = &quot;idx_usuario_empleado&quot;, columnList = &quot;empleado_id&quot;)
+)
 @Getter @Setter
-<span class="nc" id="L26">public class UsuarioSistema {</span>
+@View(members =
+    &quot;Credenciales [&quot; +
+        &quot;username; password&quot; +
+    &quot;];&quot; +
+    &quot;empleado;&quot; +
+    &quot;estado, fechaRegistro, ultimoAcceso&quot;
+)
+<span class="fc" id="L28">public class UsuarioSistema {</span>
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 30)
-    private String username;
+    @Column(length = 30, nullable = false)
+    @Pattern(regexp = &quot;[A-Za-z0-9._-]{4,30}&quot;, message = &quot;El usuario debe tener entre 4 y 30 caracteres validos&quot;)
+    String username;
 
     @Required
-    @Column(length = 100)
-    private String password;
+    @Column(length = 100, nullable = false)
+    @Size(min = 8, max = 100, message = &quot;La contrasena debe tener al menos 8 caracteres&quot;)
+    String password;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = &quot;empleado_id&quot;, nullable = false)
     @Required
-    private Empleado empleado;
+    @DescriptionsList
+    Empleado empleado;
 
     @Required
-    private boolean estado;
+    boolean estado;
 
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fechaRegistro;
+    @ReadOnly
+    Date fechaRegistro;
 
-    private Date ultimoAcceso;
+    @ReadOnly
+    Date ultimoAcceso;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

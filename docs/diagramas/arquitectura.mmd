@@ -1,0 +1,8 @@
+flowchart TB
+  A["Navegador"] --> B["OpenXava - vistas CRUD"]
+  B --> C["Acciones ProcesarCompra / ProcesarVenta"]
+  C --> D["InventarioServicio"]
+  D --> E["InventarioRepositorio"]
+  E --> F["JPA / Hibernate"]
+  F --> G[("HSQLDB 2.7.4")]
+  H["Carga y verificador"] --> F

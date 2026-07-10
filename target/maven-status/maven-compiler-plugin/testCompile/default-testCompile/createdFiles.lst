@@ -1,2 +1,3 @@
-com/minimarket/minimarket_segu/modelo/DetalleVentaTest.class
-com/minimarket/minimarket_segu/modelo/ProductoTest.class
+com/minimarket/minimarket_segu/pruebas/EntidadesTest.class
+com/minimarket/minimarket_segu/pruebas/InventarioServicioTest.class
+com/minimarket/minimarket_segu/pruebas/CategoriaProductoCrudTest.class

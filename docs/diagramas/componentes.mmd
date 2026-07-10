@@ -1,0 +1,10 @@
+flowchart LR
+  subgraph WAR["minimarket_segu.war"]
+    UI["OpenXava UI"]
+    ACT["acciones"]
+    DOM["modelo + servicios"]
+    INF["repositorio JPA"]
+    UI --> ACT --> DOM --> INF
+  end
+  INF --> DB[("HSQLDB")]
+  TC["Tomcat 9"] --> WAR

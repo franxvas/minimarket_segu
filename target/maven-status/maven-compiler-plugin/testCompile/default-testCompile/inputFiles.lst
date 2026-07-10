@@ -1,4 +1,4 @@
-/Users/Fran/Downloads/minimarket_segu/src/test/java/com/minimarket/minimarket_segu/modelo/DetalleCompraTest.java
-/Users/Fran/Downloads/minimarket_segu/src/test/java/com/minimarket/minimarket_segu/modelo/DetalleVentaTest.java
-/Users/Fran/Downloads/minimarket_segu/src/test/java/com/minimarket/minimarket_segu/modelo/ProductoTest.java
-/Users/Fran/Downloads/minimarket_segu/src/test/java/org/openxava/minimarket/minimarket_segu/tests/ProductoTest.java
+/Users/Fran/Downloads/minimarket_segu/src/test/java/com/minimarket/minimarket_segu/pruebas/AccionesTest.java
+/Users/Fran/Downloads/minimarket_segu/src/test/java/com/minimarket/minimarket_segu/pruebas/CategoriaProductoCrudTest.java
+/Users/Fran/Downloads/minimarket_segu/src/test/java/com/minimarket/minimarket_segu/pruebas/EntidadesTest.java
+/Users/Fran/Downloads/minimarket_segu/src/test/java/com/minimarket/minimarket_segu/pruebas/InventarioServicioTest.java

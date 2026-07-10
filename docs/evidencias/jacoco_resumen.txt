@@ -1,0 +1,10 @@
+JACOCO - RESULTADO FINAL 2026-07-10
+
+- Plugin: org.jacoco:jacoco-maven-plugin:0.8.14.
+- Regla: minimo 80 % de lineas del codigo propio.
+- Lineas cubiertas: 82.48 %.
+- Instrucciones cubiertas: 73.85 %.
+- Ramas cubiertas: 53.06 %.
+- Resultado del check: All coverage checks have been met.
+- Reporte: target/site/jacoco/index.html.
+- Evidencia: docs/evidencias/pruebas/maven_verify_jacoco.txt.

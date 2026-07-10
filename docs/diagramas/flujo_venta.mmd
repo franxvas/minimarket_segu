@@ -1,0 +1,9 @@
+flowchart TD
+  A["Crear venta y detalles"] --> B["Guardar borrador"]
+  B --> C["Procesar"]
+  C --> D{"Todos los datos validos"}
+  D -- No --> E["Mostrar error sin cambios"]
+  D -- Si --> F{"Stock agregado suficiente"}
+  F -- No --> E
+  F -- Si --> G["Descontar cada producto"]
+  G --> H["Marcar procesada"]

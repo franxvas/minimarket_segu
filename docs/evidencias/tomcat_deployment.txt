@@ -1,0 +1,1229 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.minimarket:minimarket_segu >-------------------
+[INFO] Building minimarket_segu 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- exec:3.1.0:java (default-cli) @ minimarket_segu ---
+[Server@b203f7a]: Initiating startup sequence...
+[Server@b203f7a]: Server socket opened successfully in 9 ms.
+Starting application...
+Jul 10, 2026 5:01:27 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-nio-8080"]
+Jul 10, 2026 5:01:27 AM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service [Tomcat]
+Jul 10, 2026 5:01:27 AM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet engine: [Apache Tomcat/9.0.118]
+Jul 10, 2026 5:01:27 AM org.apache.catalina.startup.ContextConfig getDefaultWebXmlFragment
+INFO: No global web.xml found
+Jul 10, 2026 5:01:28 AM org.apache.jasper.servlet.TldScanner scanJars
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Jul 10, 2026 5:01:28 AM org.directwebremoting.log.startup logStartup
+INFO: Starting: DWRServlet v3.0.3-dev on Apache Tomcat/9.0.118 / JDK 25.0.2 from Homebrew at /minimarket_segu
+Jul 10, 2026 5:01:28 AM org.directwebremoting.log.startup resolveMultipleImplementations
+INFO: Starting: Using container abstraction org.directwebremoting.server.servlet2.Servlet24ContainerAbstraction
+Jul 10, 2026 5:01:28 AM org.directwebremoting.impl.DTDEntityResolver resolveEntity
+WARNING: Deprecated public id in dwr.xml. Use: <!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr//dwr30.dtd">
+Jul 10, 2026 5:01:28 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-8080"]
+Application started. Go to http://localhost:8080/minimarket_segu
+[Server@b203f7a]: Database [index=0, id=0, db=file:data/minimarket_segu-db, alias=] opened successfully in 1207 ms.
+[Server@b203f7a]: Startup sequence completed in 1217 ms.
+[Server@b203f7a]: 2026-07-10 10:01:28.452 HSQLDB server 2.7.4 is online on port 1666
+[Server@b203f7a]: To close normally, connect and execute SHUTDOWN SQL
+[Server@b203f7a]: From command line, use [Ctrl]+[C] to abort abruptly
+Jul 10, 2026 5:01:49 AM org.openxava.controller.ModuleManager <clinit>
+INFO: OpenXava 7.7.3 (2026-6-5)
+Jul 10, 2026 5:01:56 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 null MODULE:SignIn
+Jul 10, 2026 5:01:56 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=94 ms
+Jul 10, 2026 5:02:09 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin SignIn.signIn 82ms
+Jul 10, 2026 5:02:09 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=86 ms
+Jul 10, 2026 5:02:09 AM org.openxava.component.parse.AnnotatedClassParser obtainManagedClassNamesFromFileClassPath
+WARNING: Ficheros ancla para obtener clases gestionadas por JPA no encontrados: xava.properties, application.xml, aplicacion.xml
+Jul 10, 2026 5:02:09 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Venta
+Jul 10, 2026 5:02:10 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=399 ms
+Jul 10, 2026 5:02:10 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Producto
+Jul 10, 2026 5:02:10 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:02:10 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:02:10 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:02:10 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=16
+Jul 10, 2026 5:02:10 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=143 ms
+Jul 10, 2026 5:11:05 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 null MODULE:SignIn
+Jul 10, 2026 5:11:06 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=14 ms
+Jul 10, 2026 5:11:08 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin SignIn.signIn 0ms
+Jul 10, 2026 5:11:08 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=7 ms
+Jul 10, 2026 5:11:09 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Producto
+Jul 10, 2026 5:11:09 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:09 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:09 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:09 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=17
+Jul 10, 2026 5:11:09 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=184 ms
+Jul 10, 2026 5:11:15 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 1ms
+Jul 10, 2026 5:11:15 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:15 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:15 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:15 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=17
+Jul 10, 2026 5:11:15 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=200 ms
+Jul 10, 2026 5:11:17 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 0ms
+Jul 10, 2026 5:11:17 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:17 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:17 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:17 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=9
+Jul 10, 2026 5:11:17 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=70 ms
+Jul 10, 2026 5:11:18 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 0ms
+Jul 10, 2026 5:11:18 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:18 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:18 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:18 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=9
+Jul 10, 2026 5:11:18 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=67 ms
+Jul 10, 2026 5:11:21 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 1ms
+Jul 10, 2026 5:11:21 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:21 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:21 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:21 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=10
+Jul 10, 2026 5:11:21 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=67 ms
+Jul 10, 2026 5:11:22 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 0ms
+Jul 10, 2026 5:11:22 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:22 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:22 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:22 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=9
+Jul 10, 2026 5:11:22 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=67 ms
+Jul 10, 2026 5:11:23 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 1ms
+Jul 10, 2026 5:11:23 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:23 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:23 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:23 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=8
+Jul 10, 2026 5:11:23 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=55 ms
+Jul 10, 2026 5:11:24 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 0ms
+Jul 10, 2026 5:11:24 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:24 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:24 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:24 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=9
+Jul 10, 2026 5:11:24 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=63 ms
+Jul 10, 2026 5:11:25 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 0ms
+Jul 10, 2026 5:11:25 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:25 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:25 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:25 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=7
+Jul 10, 2026 5:11:25 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=54 ms
+Jul 10, 2026 5:11:27 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 0ms
+Jul 10, 2026 5:11:27 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:27 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:27 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:27 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=9
+Jul 10, 2026 5:11:27 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=57 ms
+Jul 10, 2026 5:11:28 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goNextPage 1ms
+Jul 10, 2026 5:11:28 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:28 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:11:28 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:11:28 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=7
+Jul 10, 2026 5:11:28 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=54 ms
+Jul 10, 2026 5:11:29 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Proveedor
+Jul 10, 2026 5:11:30 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.ruc, e.telefono, e.correo, e.estado from Proveedor e con argumentos
+Jul 10, 2026 5:11:30 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=3
+Jul 10, 2026 5:11:30 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=45 ms
+Jul 10, 2026 5:11:37 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:UsuarioRol
+Jul 10, 2026 5:11:38 AM org.openxava.controller.ModuleManager manageRegularException
+SEVERE: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.view.View.getMetaDescriptionsList(View.java:4658)
+	at org.openxava.view.View.displayAsDescriptionsList(View.java:4627)
+	at org.openxava.view.View.extractRecursiveReference(View.java:329)
+	at org.openxava.view.View.createMetaMembers(View.java:259)
+	at org.openxava.view.View.createMetaMembers(View.java:247)
+	at org.openxava.view.View.getMetaMembers(View.java:218)
+	at org.openxava.view.View.createSubviews(View.java:1321)
+	at org.openxava.view.View.getSubviews(View.java:1313)
+	at org.openxava.view.View.setEditable(View.java:3019)
+	at org.openxava.actions.InitViewAction.execute(InitViewAction.java:17)
+	at org.openxava.controller.ModuleManager.executeAction(ModuleManager.java:616)
+	at org.openxava.controller.ModuleManager.executeAction(ModuleManager.java:548)
+	at org.openxava.controller.ModuleManager.executeAction(ModuleManager.java:540)
+	at org.openxava.controller.ModuleManager.executeInitAction(ModuleManager.java:1837)
+	at org.openxava.controller.ModuleManager.initModule(ModuleManager.java:1704)
+	at org.apache.jsp.xava.execute_jsp._jspService(execute_jsp.java:261)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.openxava.web.servlets.Servlets.getURIAsStream(Servlets.java:72)
+	at org.openxava.web.dwr.Module.getURIAsStream(Module.java:282)
+	at org.openxava.web.dwr.Module.request(Module.java:61)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+Jul 10, 2026 5:11:38 AM org.openxava.util.Labels getWithoutCache
+WARNING: Imposible internacionalizar elemento con id initView
+Jul 10, 2026 5:11:38 AM org.apache.catalina.core.ApplicationDispatcher invoke
+SEVERE: Servlet.service() for servlet [jsp] threw exception
+org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.web.WebEditors.getEditorURLDescriptionsList(WebEditors.java:354)
+	at org.apache.jsp.xava.editors.listEditor_jsp._jspService(listEditor_jsp.java:870)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.list_jsp._jspService(list_jsp.java:351)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.core_jsp._jspService(core_jsp.java:324)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:399)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:338)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:283)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:126)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:105)
+	at org.openxava.web.dwr.Module.getURIAsString(Module.java:288)
+	at org.openxava.web.dwr.Module.fillResult(Module.java:318)
+	at org.openxava.web.dwr.Module.request(Module.java:95)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+Jul 10, 2026 5:11:38 AM org.apache.catalina.core.ApplicationDispatcher invoke
+SEVERE: Servlet.service() for servlet [jsp] threw exception
+org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.web.WebEditors.getEditorURLDescriptionsList(WebEditors.java:354)
+	at org.apache.jsp.xava.editors.listEditor_jsp._jspService(listEditor_jsp.java:870)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.list_jsp._jspService(list_jsp.java:351)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.core_jsp._jspService(core_jsp.java:324)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:399)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:338)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:283)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:126)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:105)
+	at org.openxava.web.dwr.Module.getURIAsString(Module.java:288)
+	at org.openxava.web.dwr.Module.fillResult(Module.java:318)
+	at org.openxava.web.dwr.Module.request(Module.java:95)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+Jul 10, 2026 5:11:38 AM org.apache.catalina.core.ApplicationDispatcher invoke
+SEVERE: Servlet.service() for servlet [jsp] threw exception
+org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.web.WebEditors.getEditorURLDescriptionsList(WebEditors.java:354)
+	at org.apache.jsp.xava.editors.listEditor_jsp._jspService(listEditor_jsp.java:870)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.list_jsp._jspService(list_jsp.java:351)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.core_jsp._jspService(core_jsp.java:324)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:399)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:338)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:283)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:126)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:105)
+	at org.openxava.web.dwr.Module.getURIAsString(Module.java:288)
+	at org.openxava.web.dwr.Module.fillResult(Module.java:318)
+	at org.openxava.web.dwr.Module.request(Module.java:95)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+Jul 10, 2026 5:11:38 AM org.openxava.web.dwr.DWRBase request
+SEVERE: org.apache.jasper.JasperException: org.apache.jasper.JasperException: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+org.apache.jasper.JasperException: org.apache.jasper.JasperException: org.apache.jasper.JasperException: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.apache.jasper.servlet.JspServletWrapper.handleJspException(JspServletWrapper.java:561)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:457)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:399)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:338)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:283)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:126)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:105)
+	at org.openxava.web.dwr.Module.getURIAsString(Module.java:288)
+	at org.openxava.web.dwr.Module.fillResult(Module.java:318)
+	at org.openxava.web.dwr.Module.request(Module.java:95)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: org.apache.jasper.JasperException: org.apache.jasper.JasperException: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.apache.jasper.servlet.JspServletWrapper.handleJspException(JspServletWrapper.java:561)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:457)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.core_jsp._jspService(core_jsp.java:324)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	... 53 more
+Caused by: org.apache.jasper.JasperException: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.apache.jasper.servlet.JspServletWrapper.handleJspException(JspServletWrapper.java:561)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:467)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.list_jsp._jspService(list_jsp.java:351)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	... 66 more
+Caused by: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.web.WebEditors.getEditorURLDescriptionsList(WebEditors.java:354)
+	at org.apache.jsp.xava.editors.listEditor_jsp._jspService(listEditor_jsp.java:870)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	... 79 more
+
+Jul 10, 2026 5:11:38 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=124 ms
+Jul 10, 2026 5:11:46 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Rol
+Jul 10, 2026 5:11:47 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.descripcion, e.estado, e.fechaRegistro, e.usuarioRegistro from Rol e con argumentos
+Jul 10, 2026 5:11:47 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=5
+Jul 10, 2026 5:11:47 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=58 ms
+Jul 10, 2026 5:11:58 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goPage 79ms
+Jul 10, 2026 5:11:58 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=120 ms
+Jul 10, 2026 5:11:59 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goPage 0ms
+Jul 10, 2026 5:11:59 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=25 ms
+Jul 10, 2026 5:12:01 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.goPage 0ms
+Jul 10, 2026 5:12:01 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.descripcion, e.estado, e.fechaRegistro, e.usuarioRegistro from Rol e con argumentos
+Jul 10, 2026 5:12:01 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=4
+Jul 10, 2026 5:12:01 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=32 ms
+Jul 10, 2026 5:12:03 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin List.viewDetail 50ms
+Jul 10, 2026 5:12:03 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=386 ms
+Jul 10, 2026 5:12:07 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Venta
+Jul 10, 2026 5:12:07 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Cliente e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:12:07 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Empleado e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:12:07 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from MetodoPago e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:12:07 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.fecha, e_cliente.nombre, e_empleado.nombre, e_metodoPago.nombre, e.tipoComprobante, e.numeroComprobante, e.procesada, 0 from Venta e join e.cliente e_cliente join e.empleado e_empleado join e.metodoPago e_metodoPago con argumentos
+Jul 10, 2026 5:12:07 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=27
+Jul 10, 2026 5:12:07 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=149 ms
+Jul 10, 2026 5:12:10 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Marca
+Jul 10, 2026 5:12:10 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.paisOrigen, e.descripcion, e.estado, e.fechaRegistro from Marca e con argumentos
+Jul 10, 2026 5:12:10 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=4
+Jul 10, 2026 5:12:10 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=49 ms
+Jul 10, 2026 5:12:12 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:MetodoPago
+Jul 10, 2026 5:12:12 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.descripcion, e.estado, e.fechaRegistro, e.usuarioRegistro from MetodoPago e con argumentos
+Jul 10, 2026 5:12:12 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=3
+Jul 10, 2026 5:12:12 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=42 ms
+Jul 10, 2026 5:12:13 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Producto
+Jul 10, 2026 5:12:14 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from CategoriaProducto e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:12:14 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Marca e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:12:14 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.precioVenta, e.precioMayorista, e.stock, e.stockMinimo, e_categoria.nombre, e_marca.nombre, 0, 0 from Producto e join e.categoria e_categoria join e.marca e_marca con argumentos
+Jul 10, 2026 5:12:14 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=11
+Jul 10, 2026 5:12:14 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=85 ms
+Jul 10, 2026 5:12:15 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Compra
+Jul 10, 2026 5:12:16 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.nombre from Proveedor e ORDER BY e.nombre con argumentos
+Jul 10, 2026 5:12:16 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.fecha, e_proveedor.nombre, e.tipoComprobante, e.numeroComprobante, e.procesada, 0 from Compra e join e.proveedor e_proveedor con argumentos
+Jul 10, 2026 5:12:16 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=15
+Jul 10, 2026 5:12:16 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=156 ms
+Jul 10, 2026 5:12:16 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Cliente
+Jul 10, 2026 5:12:17 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.dni, e.ruc, e.tipoCliente, e.telefono, e.correo from Cliente e con argumentos
+Jul 10, 2026 5:12:17 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=4
+Jul 10, 2026 5:12:17 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=45 ms
+Jul 10, 2026 5:12:18 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:CategoriaProducto
+Jul 10, 2026 5:12:18 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.descripcion, e.estado, e.fechaRegistro, e.usuarioRegistro from CategoriaProducto e con argumentos
+Jul 10, 2026 5:12:18 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=3
+Jul 10, 2026 5:12:18 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=39 ms
+Jul 10, 2026 5:12:19 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Cargo
+Jul 10, 2026 5:12:19 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.descripcion, e.sueldoBase, e.estado, e.usuarioRegistro from Cargo e con argumentos
+Jul 10, 2026 5:12:19 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=3
+Jul 10, 2026 5:12:19 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=37 ms
+Jul 10, 2026 5:12:23 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Proveedor
+Jul 10, 2026 5:12:23 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.ruc, e.telefono, e.correo, e.estado from Proveedor e con argumentos
+Jul 10, 2026 5:12:23 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=2
+Jul 10, 2026 5:12:23 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=52 ms
+Jul 10, 2026 5:12:27 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:Rol
+Jul 10, 2026 5:12:27 AM org.openxava.tab.impl.JPATabProvider nextBlock
+FINE: [JPATabProvider.nextBlock] Ejecutando SELECT e.id, e.nombre, e.descripcion, e.estado, e.fechaRegistro, e.usuarioRegistro from Rol e con argumentos
+Jul 10, 2026 5:12:27 AM org.openxava.tab.impl.TableModelBean getRow
+FINE: nextChunk=2
+Jul 10, 2026 5:12:27 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=53 ms
+Jul 10, 2026 5:25:31 AM org.openxava.controller.ModuleManager log
+FINE: 0:0:0:0:0:0:0:1 admin MODULE:UsuarioRol
+Jul 10, 2026 5:25:32 AM org.openxava.controller.ModuleManager manageRegularException
+SEVERE: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.view.View.getMetaDescriptionsList(View.java:4658)
+	at org.openxava.view.View.displayAsDescriptionsList(View.java:4627)
+	at org.openxava.view.View.extractRecursiveReference(View.java:329)
+	at org.openxava.view.View.createMetaMembers(View.java:259)
+	at org.openxava.view.View.createMetaMembers(View.java:247)
+	at org.openxava.view.View.getMetaMembers(View.java:218)
+	at org.openxava.view.View.createSubviews(View.java:1321)
+	at org.openxava.view.View.getSubviews(View.java:1313)
+	at org.openxava.view.View.setEditable(View.java:3019)
+	at org.openxava.actions.InitViewAction.execute(InitViewAction.java:17)
+	at org.openxava.controller.ModuleManager.executeAction(ModuleManager.java:616)
+	at org.openxava.controller.ModuleManager.executeAction(ModuleManager.java:548)
+	at org.openxava.controller.ModuleManager.executeAction(ModuleManager.java:540)
+	at org.openxava.controller.ModuleManager.executeInitAction(ModuleManager.java:1837)
+	at org.openxava.controller.ModuleManager.initModule(ModuleManager.java:1704)
+	at org.apache.jsp.xava.execute_jsp._jspService(execute_jsp.java:261)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.openxava.web.servlets.Servlets.getURIAsStream(Servlets.java:72)
+	at org.openxava.web.dwr.Module.getURIAsStream(Module.java:282)
+	at org.openxava.web.dwr.Module.request(Module.java:61)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+Jul 10, 2026 5:25:32 AM org.apache.catalina.core.ApplicationDispatcher invoke
+SEVERE: Servlet.service() for servlet [jsp] threw exception
+org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.web.WebEditors.getEditorURLDescriptionsList(WebEditors.java:354)
+	at org.apache.jsp.xava.editors.listEditor_jsp._jspService(listEditor_jsp.java:870)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.list_jsp._jspService(list_jsp.java:351)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.core_jsp._jspService(core_jsp.java:324)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:399)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:338)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:283)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:126)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:105)
+	at org.openxava.web.dwr.Module.getURIAsString(Module.java:288)
+	at org.openxava.web.dwr.Module.fillResult(Module.java:318)
+	at org.openxava.web.dwr.Module.request(Module.java:95)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+Jul 10, 2026 5:25:32 AM org.apache.catalina.core.ApplicationDispatcher invoke
+SEVERE: Servlet.service() for servlet [jsp] threw exception
+org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.web.WebEditors.getEditorURLDescriptionsList(WebEditors.java:354)
+	at org.apache.jsp.xava.editors.listEditor_jsp._jspService(listEditor_jsp.java:870)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.list_jsp._jspService(list_jsp.java:351)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.core_jsp._jspService(core_jsp.java:324)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:399)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:338)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:283)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:126)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:105)
+	at org.openxava.web.dwr.Module.getURIAsString(Module.java:288)
+	at org.openxava.web.dwr.Module.fillResult(Module.java:318)
+	at org.openxava.web.dwr.Module.request(Module.java:95)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+Jul 10, 2026 5:25:32 AM org.apache.catalina.core.ApplicationDispatcher invoke
+SEVERE: Servlet.service() for servlet [jsp] threw exception
+org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.web.WebEditors.getEditorURLDescriptionsList(WebEditors.java:354)
+	at org.apache.jsp.xava.editors.listEditor_jsp._jspService(listEditor_jsp.java:870)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.list_jsp._jspService(list_jsp.java:351)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.core_jsp._jspService(core_jsp.java:324)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:399)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:338)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:283)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:126)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:105)
+	at org.openxava.web.dwr.Module.getURIAsString(Module.java:288)
+	at org.openxava.web.dwr.Module.fillResult(Module.java:318)
+	at org.openxava.web.dwr.Module.request(Module.java:95)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+Jul 10, 2026 5:25:32 AM org.openxava.web.dwr.DWRBase request
+SEVERE: org.apache.jasper.JasperException: org.apache.jasper.JasperException: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+org.apache.jasper.JasperException: org.apache.jasper.JasperException: org.apache.jasper.JasperException: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.apache.jasper.servlet.JspServletWrapper.handleJspException(JspServletWrapper.java:561)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:457)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:399)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:338)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:283)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:126)
+	at org.openxava.web.servlets.Servlets.getURIAsString(Servlets.java:105)
+	at org.openxava.web.dwr.Module.getURIAsString(Module.java:288)
+	at org.openxava.web.dwr.Module.fillResult(Module.java:318)
+	at org.openxava.web.dwr.Module.request(Module.java:95)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.directwebremoting.impl.CreatorModule$1.doFilter(CreatorModule.java:172)
+	at org.directwebremoting.impl.CreatorModule.executeMethod(CreatorModule.java:184)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:353)
+	at org.directwebremoting.impl.DefaultRemoter.execute(DefaultRemoter.java:306)
+	at org.directwebremoting.dwrp.BaseCallHandler.handle(BaseCallHandler.java:110)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:211)
+	at org.directwebremoting.servlet.UrlProcessor.handle(UrlProcessor.java:185)
+	at org.directwebremoting.servlet.DwrServlet.doPost(DwrServlet.java:144)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.openxava.web.filters.ContentSecurityPolicyFilter.doFilter(ContentSecurityPolicyFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:491)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1309)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1854)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: org.apache.jasper.JasperException: org.apache.jasper.JasperException: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.apache.jasper.servlet.JspServletWrapper.handleJspException(JspServletWrapper.java:561)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:457)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.core_jsp._jspService(core_jsp.java:324)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	... 53 more
+Caused by: org.apache.jasper.JasperException: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.apache.jasper.servlet.JspServletWrapper.handleJspException(JspServletWrapper.java:561)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:467)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:349)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:300)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:197)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:142)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:619)
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:496)
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:444)
+	at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:898)
+	at org.apache.jsp.xava.list_jsp._jspService(list_jsp.java:351)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	... 66 more
+Caused by: org.openxava.util.XavaException: UsuarioSistema no tiene ninguna propiedad llamada 'description', 'descripción', 'name' or 'nombre' por lo que es obligado especificar descriptionProperties en el @DescriptionsList de la referencia usuario en UsuarioRol
+	at org.openxava.view.meta.MetaView.calculateDefaultValuesForDescriptionsList(MetaView.java:603)
+	at org.openxava.view.meta.MetaView.getMetaDescriptionList(MetaView.java:589)
+	at org.openxava.web.WebEditors.getEditorURLDescriptionsList(WebEditors.java:354)
+	at org.apache.jsp.xava.editors.listEditor_jsp._jspService(listEditor_jsp.java:870)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	... 79 more
+
+Jul 10, 2026 5:25:32 AM org.openxava.web.dwr.DWRBase request
+FINE: Tiempo petición=33 ms
