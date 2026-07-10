@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Compra.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">Compra.java</span></div><h1>Compra.java</h1><pre class="source lang-java linenums">package com.minimarket.minimarket_segu.modelo;
+
+import java.util.Collection;
+import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
+import org.openxava.annotations.DefaultValueCalculator;
+import org.openxava.annotations.Depends;
+import org.openxava.annotations.Hidden;
+import org.openxava.annotations.ListProperties;
+import org.openxava.annotations.Money;
+import org.openxava.annotations.ReadOnly;
+import org.openxava.annotations.Required;
+import org.openxava.calculators.CurrentDateCalculator;
+
+@Entity
+@Getter @Setter
+<span class="nc" id="L26">public class Compra {</span>
+    @Id
+    @Hidden
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Required
+    @DefaultValueCalculator(CurrentDateCalculator.class)
+    private Date fecha;
+
+    @ManyToOne
+    @Required
+    private Proveedor proveedor;
+
+    @Required
+    @Column(length = 20)
+    private String tipoComprobante;
+
+    @Required
+    @Column(length = 20)
+    private String numeroComprobante;
+
+    @Required
+    private boolean estado;
+
+    @Column(length = 30)
+    private String usuarioRegistro;
+
+    @OneToMany(mappedBy = &quot;compra&quot;, cascade = CascadeType.ALL)
+    @ListProperties(&quot;producto.nombre, cantidad, precio, subtotal&quot;)
+    private Collection&lt;DetalleCompra&gt; detalles;
+
+    @Depends(&quot;detalles.subtotal&quot;)
+    @ReadOnly
+    @Money
+    public double getTotal() {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (detalles == null) return 0;</span>
+<span class="nc" id="L63">        return detalles.stream().mapToDouble(DetalleCompra::getSubtotal).sum();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

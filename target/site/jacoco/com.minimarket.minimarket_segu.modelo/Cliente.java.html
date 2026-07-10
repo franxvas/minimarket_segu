@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cliente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">Cliente.java</span></div><h1>Cliente.java</h1><pre class="source lang-java linenums">package com.minimarket.minimarket_segu.modelo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+import org.openxava.annotations.DefaultValueCalculator;
+import org.openxava.annotations.Depends;
+import org.openxava.annotations.Hidden;
+import org.openxava.annotations.Money;
+import org.openxava.annotations.ReadOnly;
+import org.openxava.annotations.Required;
+import org.openxava.calculators.CurrentDateCalculator;
+
+@Entity
+@Getter @Setter
+<span class="fc" id="L20">public class Cliente {</span>
+    @Id
+    @Hidden
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Required
+    @Column(length = 80)
+    private String nombre;
+
+    @Required
+    @Column(length = 8)
+    private String dni;
+
+    @Column(length = 11)
+    private String ruc;
+
+    @Column(length = 100)
+    private String razonSocial;
+
+    @Required
+    @DefaultValueCalculator(value = org.openxava.calculators.EnumCalculator.class, 
+        properties = @org.openxava.annotations.PropertyValue(name = &quot;value&quot;, value = &quot;REGULAR&quot;))
+    private TipoCliente tipoCliente;
+
+<span class="fc" id="L45">    public enum TipoCliente {</span>
+<span class="fc" id="L46">        REGULAR, MAYORISTA</span>
+    }
+
+    @Column(length = 120)
+    private String direccion;
+
+    @Column(length = 15)
+    private String telefono;
+
+    @Column(length = 60)
+    private String correo;
+
+    @DefaultValueCalculator(CurrentDateCalculator.class)
+    private java.util.Date fechaRegistro;
+
+    @Depends(&quot;id&quot;)
+    @ReadOnly
+    @Money
+    public double getMontoTotalGastado() {
+<span class="nc" id="L65">        return 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

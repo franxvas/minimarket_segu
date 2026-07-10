@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Producto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">minimarket_segu</a> &gt; <a href="index.source.html" class="el_package">com.minimarket.minimarket_segu.modelo</a> &gt; <span class="el_source">Producto.java</span></div><h1>Producto.java</h1><pre class="source lang-java linenums">package com.minimarket.minimarket_segu.modelo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.AssertTrue;
+import lombok.Getter;
+import lombok.Setter;
+import org.openxava.annotations.Depends;
+import org.openxava.annotations.Hidden;
+import org.openxava.annotations.Money;
+import org.openxava.annotations.ReadOnly;
+import org.openxava.annotations.Required;
+
+@Entity
+@Getter @Setter
+<span class="fc" id="L20">public class Producto {</span>
+    @Id
+    @Hidden
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Required
+    @Column(length = 50)
+    private String nombre;
+
+    @Column(length = 200)
+    private String descripcion;
+
+    @Required
+    @Money
+    private double precioCompra;
+
+    @Required
+    @Money
+    private double precioVenta;
+
+    @Required
+    @Money
+    private double precioMayorista;
+
+    @Required
+    private int stock;
+
+    @ManyToOne
+    @Required
+    private CategoriaProducto categoria;
+
+    @ManyToOne
+    @Required
+    private Marca marca;
+    
+    @AssertTrue(message=&quot;El precio de compra no puede ser negativo&quot;)
+    public boolean isPrecioCompraValido() {
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        return precioCompra &gt;= 0;</span>
+    }
+    
+    @AssertTrue(message=&quot;El precio de venta no puede ser negativo&quot;)
+    public boolean isPrecioVentaValido() {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        return precioVenta &gt;= 0;</span>
+    }
+
+    @AssertTrue(message=&quot;El precio mayorista no puede ser negativo&quot;)
+    public boolean isPrecioMayoristaValido() {
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        return precioMayorista &gt;= 0;</span>
+    }
+
+    @Depends(&quot;precioCompra, precioVenta&quot;)
+    @ReadOnly
+    @Money
+    public double getGanancia() {
+<span class="fc" id="L75">        return precioVenta - precioCompra;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
