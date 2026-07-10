@@ -33,8 +33,3 @@ Fecha: 10 de julio de 2026.
 2. La URL HSQLDB usaba un alias inexistente; se ajusto al alias vacio de `DBServer`.
 3. Las colecciones con `@OrderColumn` eran `Collection`; se cambiaron a `List`, generando PK compuesta en detalles.
 4. La interfaz mezclaba ingles y duplicaba referencias; se fijo espanol y `@Tab` explicitos.
-
-## Pendientes reales
-
-- Completar nombres de integrantes, docente, PYME y evidencia real del levantamiento.
-- Capturar casos de validacion y mensajes de compra/venta si el docente exige todas las pantallas de la rubrica.

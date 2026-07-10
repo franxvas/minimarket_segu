@@ -1,6 +1,5 @@
-# Plan de carga de datos realista
+# Plan de carga de datos
 
-La regla anterior de 6,000 filas para cada tabla se descarto porque inflaba catalogos y configuraciones. La cardinalidad final depende del tipo de entidad y se justifica en `ANALISIS_VOLUMEN_DATOS.md`.
 
 | Grupo | Entidades | Objetivo |
 |---|---|---:|
