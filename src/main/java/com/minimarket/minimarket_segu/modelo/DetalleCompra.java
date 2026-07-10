@@ -14,7 +14,8 @@ import org.openxava.annotations.*;
 @Getter @Setter
 public class DetalleCompra {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "producto_id", nullable = false)
     @Required
     @DescriptionsList
     Producto producto;
@@ -26,6 +27,7 @@ public class DetalleCompra {
     @Required
     @Money
     @DecimalMin(value = "0.01", message = "El precio de compra debe ser mayor a cero")
+    @Column(nullable = false, precision = 12, scale = 2)
     BigDecimal precio;
 
     @Depends("cantidad, precio")

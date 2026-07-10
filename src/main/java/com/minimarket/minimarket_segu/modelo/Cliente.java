@@ -12,9 +12,18 @@ import org.openxava.calculators.CurrentDateCalculator;
  * Puede ser REGULAR o MAYORISTA, lo que afecta los precios de venta.
  */
 @Entity
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uk_cliente_dni", columnNames = "dni"),
+        @UniqueConstraint(name = "uk_cliente_ruc", columnNames = "ruc"),
+        @UniqueConstraint(name = "uk_cliente_correo", columnNames = "correo")
+    },
+    indexes = @Index(name = "idx_cliente_nombre", columnList = "nombre")
+)
 @Getter @Setter
+@Tab(properties = "nombre, dni, ruc, tipoCliente, telefono, correo")
 @View(members =
-    "Datos Personales [" +
+    "DatosPersonales [" +
         "nombre; dni, tipoCliente;" +
         "ruc, razonSocial" +
     "];" +
@@ -32,11 +41,12 @@ public class Cliente {
     Long id;
 
     @Required
-    @Column(length = 80)
+    @Column(length = 80, nullable = false)
+    @NotBlank(message = "El nombre del cliente es obligatorio")
     String nombre;
 
     @Required
-    @Column(length = 8)
+    @Column(length = 8, nullable = false)
     @Pattern(regexp = "\\d{8}", message = "El DNI debe tener exactamente 8 dígitos numéricos")
     String dni;
 
@@ -50,6 +60,8 @@ public class Cliente {
     @Required
     @DefaultValueCalculator(value = org.openxava.calculators.EnumCalculator.class,
         properties = @PropertyValue(name = "value", value = "REGULAR"))
+    @Enumerated(EnumType.STRING)
+    @Column(length = 12, nullable = false)
     TipoCliente tipoCliente;
 
     public enum TipoCliente {

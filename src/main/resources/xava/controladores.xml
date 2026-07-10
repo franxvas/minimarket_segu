@@ -1,35 +1,47 @@
-<?xml version = "1.0" encoding = "ISO-8859-1"?>
+<?xml version = "1.0" encoding = "UTF-8"?>
 
 <!DOCTYPE controladores SYSTEM "dtds/controladores.dtd">
 
-<!-- 
-Documentación sobre controladores: 
+<!--
+DocumentaciÃ³n sobre controladores:
 https://www.openxava.org/OpenXavaDoc/docs/controllers_es.html
 
 Controladores por defecto, incluidos en OpenXava (puedes extender de ellos):
 https://github.com/openxava/openxava/blob/master/openxava/src/main/resources/xava/default-controllers.xml
- 
-Ejemplos de controladores (de la aplicación de pruebas):
+
+Ejemplos de controladores (de la aplicaciÃ³n de pruebas):
 https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources/xava/controllers.xml
 -->
 
 <controladores>
-    
-    <!-- Variable de entorno: 
+
+    <controlador nombre="Venta">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="procesar" modo="detail" icono="cart-check"
+            clase="com.minimarket.minimarket_segu.acciones.ProcesarVenta"/>
+    </controlador>
+
+    <controlador nombre="Compra">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="procesar" modo="detail" icono="package-variant-closed-check"
+            clase="com.minimarket.minimarket_segu.acciones.ProcesarCompra"/>
+    </controlador>
+
+    <!-- Variable de entorno:
     <var-entorno nombre="minimarket_segu_ANYO_DEFECTO" valor="2015"/>
     -->
-    
-    <!-- Objeto de sesión:
-    <Objeto nombre="minimarket_segu_anyoActivo" clase="java.lang.Integer" valor="2015" 
+
+    <!-- Objeto de sesiÃ³n:
+    <Objeto nombre="minimarket_segu_anyoActivo" clase="java.lang.Integer" valor="2015"
             ambito="global"/>
     -->
-    
+
     <!-- Controlador:
     <controlador nombre="Profesor">
         <hereda-de controlador="Typical"/>
-        <accion nombre="new" icono="plus-box-multiple" atajo-de-teclado="Control N" 
-                clase="acciones.CrearProfesor"/>        
+        <accion nombre="new" icono="plus-box-multiple" atajo-de-teclado="Control N"
+                clase="acciones.CrearProfesor"/>
     </controlador>
     -->
-    
+
 </controladores>

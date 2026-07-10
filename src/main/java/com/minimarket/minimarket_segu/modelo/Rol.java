@@ -10,6 +10,7 @@ import org.openxava.calculators.CurrentDateCalculator;
  * Entidad que representa un rol de usuario en el sistema.
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name = "uk_rol_nombre", columnNames = "nombre"))
 @Getter @Setter
 public class Rol {
 
@@ -19,7 +20,7 @@ public class Rol {
     Long id;
 
     @Required
-    @Column(length = 40)
+    @Column(length = 40, nullable = false)
     String nombre;
 
     @Column(length = 150)

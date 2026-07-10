@@ -1,7 +1,8 @@
 package com.minimarket.minimarket_segu.modelo;
 
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -14,9 +15,14 @@ import org.openxava.calculators.CurrentDateCalculator;
  * Incluye datos del comprobante, cliente, empleado, metodo de pago y detalles.
  */
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(name = "uk_venta_comprobante", columnNames = {"tipoComprobante", "numeroComprobante"}),
+    indexes = {@Index(name = "idx_venta_fecha", columnList = "fecha"), @Index(name = "idx_venta_cliente", columnList = "cliente_id")}
+)
 @Getter @Setter
+@Tab(properties = "fecha, cliente.nombre, empleado.nombre, metodoPago.nombre, tipoComprobante, numeroComprobante, procesada, total")
 @View(members =
-    "Datos del Comprobante [" +
+    "DatosComprobante [" +
         "fecha, tipoComprobante, numeroComprobante;" +
         "cliente, empleado, metodoPago" +
     "];" +
@@ -34,22 +40,27 @@ public class Venta {
     @DefaultValueCalculator(CurrentDateCalculator.class)
     Date fecha;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
     @Required
     @DescriptionsList
     Cliente cliente;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "empleado_id", nullable = false)
     @Required
     @DescriptionsList
     Empleado empleado;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "metodoPago_id", nullable = false)
     @Required
     @DescriptionsList
     MetodoPago metodoPago;
 
     @Required
+    @Enumerated(EnumType.STRING)
+    @Column(length = 12, nullable = false)
     TipoComprobante tipoComprobante;
 
     public enum TipoComprobante {
@@ -57,12 +68,26 @@ public class Venta {
     }
 
     @Required
-    @Column(length = 20)
+    @Column(length = 20, nullable = false)
     String numeroComprobante;
 
     @ElementCollection
+    @CollectionTable(name = "detalle_venta", joinColumns = @JoinColumn(name = "venta_id"))
+    @OrderColumn(name = "linea")
     @ListProperties("producto.nombre, cantidad, precio, descuentoVolumen, subtotal")
-    Collection<DetalleVenta> detalles;
+    List<DetalleVenta> detalles = new ArrayList<>();
+
+    @ReadOnly
+    boolean procesada;
+
+    public void agregarDetalle(DetalleVenta detalle) {
+        detalles.add(detalle);
+    }
+
+    @AssertTrue(message = "La venta debe contener al menos un detalle")
+    public boolean isConDetalles() {
+        return detalles != null && !detalles.isEmpty();
+    }
 
     @AssertTrue(message = "Para emitir una FACTURA, el cliente debe tener un RUC registrado")
     public boolean isRucValidoParaFactura() {

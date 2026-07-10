@@ -10,6 +10,7 @@ import org.openxava.annotations.*;
  * Entidad que representa un cargo o puesto de trabajo en el minimarket.
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name = "uk_cargo_nombre", columnNames = "nombre"))
 @Getter @Setter
 public class Cargo {
 
@@ -19,7 +20,7 @@ public class Cargo {
     Long id;
 
     @Required
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     String nombre;
 
     @Column(length = 150)
@@ -28,6 +29,7 @@ public class Cargo {
     @Required
     @Money
     @DecimalMin(value = "0.00", message = "El sueldo base no puede ser negativo")
+    @Column(nullable = false, precision = 12, scale = 2)
     BigDecimal sueldoBase;
 
     @Required

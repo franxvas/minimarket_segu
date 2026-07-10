@@ -12,9 +12,17 @@ import org.openxava.calculators.CurrentDateCalculator;
  * Almacena datos de contacto, RUC y estado activo/inactivo.
  */
 @Entity
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uk_proveedor_ruc", columnNames = "ruc"),
+        @UniqueConstraint(name = "uk_proveedor_correo", columnNames = "correo")
+    },
+    indexes = @Index(name = "idx_proveedor_nombre", columnList = "nombre")
+)
 @Getter @Setter
+@Tab(properties = "nombre, ruc, telefono, correo, estado")
 @View(members =
-    "Datos del Proveedor [" +
+    "DatosProveedor [" +
         "nombre; ruc;" +
         "direccion" +
     "];" +
@@ -31,11 +39,12 @@ public class Proveedor {
     Long id;
 
     @Required
-    @Column(length = 80)
+    @Column(length = 80, nullable = false)
+    @NotBlank(message = "El nombre del proveedor es obligatorio")
     String nombre;
 
     @Required
-    @Column(length = 11)
+    @Column(length = 11, nullable = false)
     @Pattern(regexp = "\\d{11}", message = "El RUC debe tener exactamente 11 digitos numericos")
     String ruc;
 

@@ -10,6 +10,10 @@ import org.openxava.calculators.CurrentDateCalculator;
  * Entidad que asocia un usuario del sistema con un rol.
  */
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(name = "uk_usuario_rol", columnNames = {"usuario_id", "rol_id"}),
+    indexes = {@Index(name = "idx_usuario_rol_usuario", columnList = "usuario_id"), @Index(name = "idx_usuario_rol_rol", columnList = "rol_id")}
+)
 @Getter @Setter
 public class UsuarioRol {
 
@@ -18,11 +22,14 @@ public class UsuarioRol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false)
     @Required
+    @DescriptionsList(descriptionProperties = "username")
     UsuarioSistema usuario;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "rol_id", nullable = false)
     @Required
     @DescriptionsList
     Rol rol;

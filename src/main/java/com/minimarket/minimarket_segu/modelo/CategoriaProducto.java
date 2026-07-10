@@ -10,6 +10,7 @@ import org.openxava.calculators.CurrentDateCalculator;
  * Entidad que representa una categoria de productos del minimarket.
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name = "uk_categoria_nombre", columnNames = "nombre"))
 @Getter @Setter
 public class CategoriaProducto {
 
@@ -19,7 +20,7 @@ public class CategoriaProducto {
     Long id;
 
     @Required
-    @Column(length = 40)
+    @Column(length = 40, nullable = false)
     String nombre;
 
     @Column(length = 150)

@@ -10,6 +10,7 @@ import org.openxava.calculators.CurrentDateCalculator;
  * Entidad que representa un metodo de pago aceptado por el minimarket.
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name = "uk_metodo_pago_nombre", columnNames = "nombre"))
 @Getter @Setter
 public class MetodoPago {
 
@@ -19,7 +20,7 @@ public class MetodoPago {
     Long id;
 
     @Required
-    @Column(length = 40)
+    @Column(length = 40, nullable = false)
     String nombre;
 
     @Column(length = 150)

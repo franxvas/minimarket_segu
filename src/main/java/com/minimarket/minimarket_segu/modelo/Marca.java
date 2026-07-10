@@ -10,6 +10,7 @@ import org.openxava.calculators.CurrentDateCalculator;
  * Entidad que representa una marca de productos.
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name = "uk_marca_nombre", columnNames = "nombre"))
 @Getter @Setter
 public class Marca {
 
@@ -19,7 +20,7 @@ public class Marca {
     Long id;
 
     @Required
-    @Column(length = 40)
+    @Column(length = 40, nullable = false)
     String nombre;
 
     @Column(length = 40)

@@ -12,9 +12,16 @@ import org.openxava.calculators.CurrentDateCalculator;
  * Vinculado a un Cargo y puede tener un UsuarioSistema asociado.
  */
 @Entity
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uk_empleado_dni", columnNames = "dni"),
+        @UniqueConstraint(name = "uk_empleado_correo", columnNames = "correo")
+    },
+    indexes = @Index(name = "idx_empleado_nombre", columnList = "nombre")
+)
 @Getter @Setter
 @View(members =
-    "Datos Personales [" +
+    "DatosPersonales [" +
         "nombre; dni;" +
         "direccion" +
     "];" +
@@ -31,11 +38,12 @@ public class Empleado {
     Long id;
 
     @Required
-    @Column(length = 80)
+    @Column(length = 80, nullable = false)
+    @NotBlank(message = "El nombre del empleado es obligatorio")
     String nombre;
 
     @Required
-    @Column(length = 8)
+    @Column(length = 8, nullable = false)
     @Pattern(regexp = "\\d{8}", message = "El DNI debe tener exactamente 8 dígitos numéricos")
     String dni;
 
@@ -50,7 +58,8 @@ public class Empleado {
     @Email(message = "El correo electrónico no tiene un formato válido")
     String correo;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cargo_id", nullable = false)
     @Required
     @DescriptionsList
     Cargo cargo;
