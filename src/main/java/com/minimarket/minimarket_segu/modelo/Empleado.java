@@ -1,55 +1,70 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.minimarket.minimarket_segu.modelo;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Required;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
+
 /**
- *
- * @author segun
+ * Entidad que representa un empleado del minimarket.
+ * Vinculado a un Cargo y puede tener un UsuarioSistema asociado.
  */
 @Entity
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uk_empleado_dni", columnNames = "dni"),
+        @UniqueConstraint(name = "uk_empleado_correo", columnNames = "correo")
+    },
+    indexes = @Index(name = "idx_empleado_nombre", columnList = "nombre")
+)
 @Getter @Setter
+@View(members =
+    "DatosPersonales [" +
+        "nombre; dni;" +
+        "direccion" +
+    "];" +
+    "Contacto [" +
+        "telefono, correo" +
+    "];" +
+    "cargo, fechaIngreso"
+)
 public class Empleado {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 80)
-    private String nombre;
+    @Column(length = 80, nullable = false)
+    @NotBlank(message = "El nombre del empleado es obligatorio")
+    String nombre;
 
     @Required
-    @Column(length = 8)
-    private String dni;
+    @Column(length = 8, nullable = false)
+    @Pattern(regexp = "\\d{8}", message = "El DNI debe tener exactamente 8 dígitos numéricos")
+    String dni;
 
     @Column(length = 120)
-    private String direccion;
+    String direccion;
 
     @Column(length = 15)
-    private String telefono;
+    @Pattern(regexp = "(\\d{6,15})?", message = "El teléfono debe contener entre 6 y 15 dígitos")
+    String telefono;
 
     @Column(length = 60)
-    private String correo;
+    @Email(message = "El correo electrónico no tiene un formato válido")
+    String correo;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cargo_id", nullable = false)
     @Required
-    private Cargo cargo;
+    @DescriptionsList
+    Cargo cargo;
 
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fechaIngreso;
+    @ReadOnly
+    Date fechaIngreso;
 }

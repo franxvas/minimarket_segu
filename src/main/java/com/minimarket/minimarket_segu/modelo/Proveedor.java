@@ -1,64 +1,69 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.minimarket.minimarket_segu.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Depends;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Money;
-import org.openxava.annotations.ReadOnly;
-import org.openxava.annotations.Required;
+import java.util.Date;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
 
 /**
- *
- * @author segun
+ * Entidad que representa un proveedor del minimarket.
+ * Almacena datos de contacto, RUC y estado activo/inactivo.
  */
 @Entity
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uk_proveedor_ruc", columnNames = "ruc"),
+        @UniqueConstraint(name = "uk_proveedor_correo", columnNames = "correo")
+    },
+    indexes = @Index(name = "idx_proveedor_nombre", columnList = "nombre")
+)
 @Getter @Setter
+@Tab(properties = "nombre, ruc, telefono, correo, estado")
+@View(members =
+    "DatosProveedor [" +
+        "nombre; ruc;" +
+        "direccion" +
+    "];" +
+    "Contacto [" +
+        "telefono, correo" +
+    "];" +
+    "estado, fechaRegistro"
+)
 public class Proveedor {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 80)
-    private String nombre;
+    @Column(length = 80, nullable = false)
+    @NotBlank(message = "El nombre del proveedor es obligatorio")
+    String nombre;
 
     @Required
-    @Column(length = 11)
-    private String ruc;
+    @Column(length = 11, nullable = false)
+    @Pattern(regexp = "\\d{11}", message = "El RUC debe tener exactamente 11 digitos numericos")
+    String ruc;
 
     @Column(length = 120)
-    private String direccion;
+    String direccion;
 
     @Column(length = 15)
-    private String telefono;
+    @Pattern(regexp = "(\\d{6,15})?", message = "El telefono debe contener entre 6 y 15 digitos")
+    String telefono;
 
     @Column(length = 60)
-    private String correo;
+    @Email(message = "El correo electronico no tiene un formato valido")
+    String correo;
 
     @Required
-    private boolean estado;
+    boolean estado;
 
     @Required
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private java.util.Date fechaRegistro;
-
-    @Depends("id")
     @ReadOnly
-    @Money
-    public double getTotalComprado() {
-        return 0; // luego lo calculamos con lógica real
-    }
+    Date fechaRegistro;
 }

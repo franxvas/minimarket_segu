@@ -1,47 +1,47 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.minimarket.minimarket_segu.modelo;
 
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Required;
+import javax.persistence.*;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
+
 /**
- *
- * @author segun
+ * Entidad que asocia un usuario del sistema con un rol.
  */
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(name = "uk_usuario_rol", columnNames = {"usuario_id", "rol_id"}),
+    indexes = {@Index(name = "idx_usuario_rol_usuario", columnList = "usuario_id"), @Index(name = "idx_usuario_rol_rol", columnList = "rol_id")}
+)
 @Getter @Setter
 public class UsuarioRol {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false)
     @Required
-    private UsuarioSistema usuario;
+    @DescriptionsList(descriptionProperties = "username")
+    UsuarioSistema usuario;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "rol_id", nullable = false)
     @Required
-    private Rol rol;
+    @DescriptionsList
+    Rol rol;
 
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fechaAsignacion;
+    @ReadOnly
+    Date fechaAsignacion;
 
     @Required
-    private boolean estado;
+    boolean estado;
 
-    @Required
-    private String usuarioRegistro;
+    @Column(length = 30)
+    @ReadOnly
+    String usuarioRegistro;
 }

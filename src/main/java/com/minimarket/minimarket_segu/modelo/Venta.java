@@ -1,18 +1,28 @@
 package com.minimarket.minimarket_segu.modelo;
 
-import java.util.Collection;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import lombok.Getter;
-import lombok.Setter;
+import javax.validation.constraints.*;
+import lombok.*;
 import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
 
+/**
+ * Entidad que representa una venta realizada en el minimarket.
+ * Incluye datos del comprobante, cliente, empleado, metodo de pago y detalles.
+ */
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(name = "uk_venta_comprobante", columnNames = {"tipoComprobante", "numeroComprobante"}),
+    indexes = {@Index(name = "idx_venta_fecha", columnList = "fecha"), @Index(name = "idx_venta_cliente", columnList = "cliente_id")}
+)
 @Getter @Setter
-@View(members = 
-    "Datos del Comprobante [" +
+@Tab(properties = "fecha, cliente.nombre, empleado.nombre, metodoPago.nombre, tipoComprobante, numeroComprobante, procesada, total")
+@View(members =
+    "DatosComprobante [" +
         "fecha, tipoComprobante, numeroComprobante;" +
         "cliente, empleado, metodoPago" +
     "];" +
@@ -20,43 +30,66 @@ import org.openxava.calculators.CurrentDateCalculator;
     "total"
 )
 public class Venta {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fecha;
+    Date fecha;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
     @Required
-    private Cliente cliente;
+    @DescriptionsList
+    Cliente cliente;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "empleado_id", nullable = false)
     @Required
-    private Empleado empleado;
+    @DescriptionsList
+    Empleado empleado;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "metodoPago_id", nullable = false)
     @Required
-    private MetodoPago metodoPago;
+    @DescriptionsList
+    MetodoPago metodoPago;
 
     @Required
-    private TipoComprobante tipoComprobante;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 12, nullable = false)
+    TipoComprobante tipoComprobante;
 
     public enum TipoComprobante {
         BOLETA, FACTURA, TICKET
     }
 
     @Required
-    @Column(length = 20)
-    private String numeroComprobante;
+    @Column(length = 20, nullable = false)
+    String numeroComprobante;
 
-    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+    @ElementCollection
+    @CollectionTable(name = "detalle_venta", joinColumns = @JoinColumn(name = "venta_id"))
+    @OrderColumn(name = "linea")
     @ListProperties("producto.nombre, cantidad, precio, descuentoVolumen, subtotal")
-    private Collection<DetalleVenta> detalles;
+    List<DetalleVenta> detalles = new ArrayList<>();
 
-    @AssertTrue(message = "Para emitir una FACTURA, el cliente debe tener un RUC registrado en su ficha")
+    @ReadOnly
+    boolean procesada;
+
+    public void agregarDetalle(DetalleVenta detalle) {
+        detalles.add(detalle);
+    }
+
+    @AssertTrue(message = "La venta debe contener al menos un detalle")
+    public boolean isConDetalles() {
+        return detalles != null && !detalles.isEmpty();
+    }
+
+    @AssertTrue(message = "Para emitir una FACTURA, el cliente debe tener un RUC registrado")
     public boolean isRucValidoParaFactura() {
         if (tipoComprobante == TipoComprobante.FACTURA) {
             if (cliente == null) return false;
@@ -69,8 +102,10 @@ public class Venta {
     @Depends("detalles.subtotal")
     @ReadOnly
     @Money
-    public double getTotal() {
-        if (detalles == null) return 0;
-        return detalles.stream().mapToDouble(DetalleVenta::getSubtotal).sum();
+    public BigDecimal getTotal() {
+        if (detalles == null) return BigDecimal.ZERO;
+        return detalles.stream()
+            .map(DetalleVenta::getSubtotal)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

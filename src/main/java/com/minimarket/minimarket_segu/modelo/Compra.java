@@ -1,65 +1,92 @@
 package com.minimarket.minimarket_segu.modelo;
 
-import java.util.Collection;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Depends;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.ListProperties;
-import org.openxava.annotations.Money;
-import org.openxava.annotations.ReadOnly;
-import org.openxava.annotations.Required;
+import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
 
+/**
+ * Entidad que representa una compra realizada a un proveedor.
+ * Incluye datos del comprobante, proveedor y detalles de compra.
+ */
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(name = "uk_compra_comprobante", columnNames = {"tipoComprobante", "numeroComprobante"}),
+    indexes = {@Index(name = "idx_compra_fecha", columnList = "fecha"), @Index(name = "idx_compra_proveedor", columnList = "proveedor_id")}
+)
 @Getter @Setter
+@Tab(properties = "fecha, proveedor.nombre, tipoComprobante, numeroComprobante, procesada, total")
+@View(members =
+    "DatosCompra [" +
+        "fecha, tipoComprobante, numeroComprobante;" +
+        "proveedor" +
+    "];" +
+    "estado, usuarioRegistro;" +
+    "detalles;" +
+    "total"
+)
 public class Compra {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fecha;
+    Date fecha;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "proveedor_id", nullable = false)
     @Required
-    private Proveedor proveedor;
-
-    @Required
-    @Column(length = 20)
-    private String tipoComprobante;
+    @DescriptionsList
+    Proveedor proveedor;
 
     @Required
-    @Column(length = 20)
-    private String numeroComprobante;
+    @Column(length = 20, nullable = false)
+    String tipoComprobante;
 
     @Required
-    private boolean estado;
+    @Column(length = 20, nullable = false)
+    String numeroComprobante;
+
+    @Required
+    boolean estado;
 
     @Column(length = 30)
-    private String usuarioRegistro;
+    @ReadOnly
+    String usuarioRegistro;
 
-    @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
+    @ElementCollection
+    @CollectionTable(name = "detalle_compra", joinColumns = @JoinColumn(name = "compra_id"))
+    @OrderColumn(name = "linea")
     @ListProperties("producto.nombre, cantidad, precio, subtotal")
-    private Collection<DetalleCompra> detalles;
+    List<DetalleCompra> detalles = new ArrayList<>();
+
+    @ReadOnly
+    boolean procesada;
+
+    public void agregarDetalle(DetalleCompra detalle) {
+        detalles.add(detalle);
+    }
+
+    @AssertTrue(message = "La compra debe contener al menos un detalle")
+    public boolean isConDetalles() {
+        return detalles != null && !detalles.isEmpty();
+    }
 
     @Depends("detalles.subtotal")
     @ReadOnly
     @Money
-    public double getTotal() {
-        if (detalles == null) return 0;
-        return detalles.stream().mapToDouble(DetalleCompra::getSubtotal).sum();
+    public BigDecimal getTotal() {
+        if (detalles == null) return BigDecimal.ZERO;
+        return detalles.stream()
+            .map(DetalleCompra::getSubtotal)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

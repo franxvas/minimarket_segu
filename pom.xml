@@ -9,10 +9,12 @@
 
 	<properties>
 		<openxava.version>7.7.3</openxava.version>
-		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Las aplicaciones OpenXava funcionan bien con Java 1.8, 11, 17, 21 y 25 -->
-		<maven.compiler.source>25</maven.compiler.source>
-		<maven.compiler.target>25</maven.compiler.target>
+		<maven.compiler.release>25</maven.compiler.release>
+		<junit.version>4.13.2</junit.version>
+		<mockito.version>5.12.0</mockito.version>
+		<exec.mainClass>${project.groupId}.${project.artifactId}.run.${project.artifactId}</exec.mainClass>
 	</properties>
 
 	<dependencies>
@@ -22,42 +24,19 @@
 			<version>${openxava.version}</version>
 		</dependency>
 		
-		<!-- Funcionalidad de Chat IA (requiere Java 17) -->
 		<dependency>
-			<groupId>org.openxava</groupId>
-			<artifactId>openxava-7.7-chat-jdk17</artifactId>
-			<version>${openxava.version}</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
-                
-                <!-- JUnit 5 -->
-                <dependency>
-                    <groupId>org.junit.jupiter</groupId>
-                    <artifactId>junit-jupiter-params</artifactId>
-                    <version>5.11.0</version>
-                    <scope>test</scope>
-                </dependency>
 
                 <!-- Mockito Core -->
                 <dependency>
                     <groupId>org.mockito</groupId>
                     <artifactId>mockito-core</artifactId>
-                    <version>5.12.0</version>
+                    <version>${mockito.version}</version>
                     <scope>test</scope>
-                </dependency>
-
-                <!-- Mockito + JUnit 5 -->
-                <dependency>
-                    <groupId>org.mockito</groupId>
-                    <artifactId>mockito-junit-jupiter</artifactId>
-                    <version>5.12.0</version>
-                    <scope>test</scope>
-                </dependency>
-                
-		<!-- MySQL -->
-                <dependency>
-                    <groupId>com.mysql</groupId>
-                    <artifactId>mysql-connector-j</artifactId>
-                    <version>9.7.0</version>
                 </dependency>
                 
 		<!-- 
@@ -143,8 +122,7 @@
 	            <artifactId>maven-compiler-plugin</artifactId>
 	            <version>3.12.0</version>
 	            <configuration>
-	                <source>${maven.compiler.source}</source>
-	                <target>${maven.compiler.target}</target>
+	                <release>${maven.compiler.release}</release>
 	                <encoding>${project.build.sourceEncoding}</encoding>
 	                <annotationProcessorPaths>
 	                    <path>
@@ -227,7 +205,8 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.2.5</version>
 				<configuration>
-					<skipTests>false</skipTests>
+					<!-- Mockito 5.12/Byte Buddy puede ejecutar mocks en Java 25 con este modo. -->
+					<argLine>@{argLine} -Dnet.bytebuddy.experimental=true</argLine>
 				</configuration>
 			</plugin>
                         
@@ -235,6 +214,16 @@
                             <groupId>org.jacoco</groupId>
                             <artifactId>jacoco-maven-plugin</artifactId>
                             <version>0.8.14</version>
+							<configuration>
+								<!-- Solo se mide codigo propio; evita instrumentar HtmlUnit/OpenXava. -->
+								<includes>
+									<include>com/minimarket/minimarket_segu/**</include>
+								</includes>
+								<excludes>
+									<exclude>com/minimarket/minimarket_segu/run/**</exclude>
+									<exclude>com/minimarket/minimarket_segu/datos/**</exclude>
+								</excludes>
+							</configuration>
                             <executions>
                                 <execution>
                                     <id>prepare-agent</id>
@@ -249,6 +238,29 @@
                                         <goal>report</goal>
                                     </goals>
                                 </execution>
+								<execution>
+									<id>check</id>
+									<phase>verify</phase>
+									<goals><goal>check</goal></goals>
+									<configuration>
+										<rules>
+											<rule>
+												<element>BUNDLE</element>
+												<limits>
+													<limit>
+														<counter>LINE</counter>
+														<value>COVEREDRATIO</value>
+														<minimum>0.80</minimum>
+													</limit>
+												</limits>
+											</rule>
+										</rules>
+										<excludes>
+											<exclude>com/minimarket/minimarket_segu/run/**</exclude>
+											<exclude>com/minimarket/minimarket_segu/datos/**</exclude>
+										</excludes>
+									</configuration>
+								</execution>
                             </executions>
                         </plugin>
 			
@@ -257,7 +269,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>3.1.0</version> 
 				<configuration>
-					<mainClass>${project.groupId}.${project.artifactId}.run.${project.artifactId}</mainClass>
+					<mainClass>${exec.mainClass}</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

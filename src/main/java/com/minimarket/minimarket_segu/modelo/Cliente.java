@@ -1,67 +1,85 @@
 package com.minimarket.minimarket_segu.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Depends;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Money;
-import org.openxava.annotations.ReadOnly;
-import org.openxava.annotations.Required;
+import java.util.Date;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
 
+/**
+ * Entidad que representa un cliente del minimarket.
+ * Puede ser REGULAR o MAYORISTA, lo que afecta los precios de venta.
+ */
 @Entity
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uk_cliente_dni", columnNames = "dni"),
+        @UniqueConstraint(name = "uk_cliente_ruc", columnNames = "ruc"),
+        @UniqueConstraint(name = "uk_cliente_correo", columnNames = "correo")
+    },
+    indexes = @Index(name = "idx_cliente_nombre", columnList = "nombre")
+)
 @Getter @Setter
+@Tab(properties = "nombre, dni, ruc, tipoCliente, telefono, correo")
+@View(members =
+    "DatosPersonales [" +
+        "nombre; dni, tipoCliente;" +
+        "ruc, razonSocial" +
+    "];" +
+    "Contacto [" +
+        "direccion;" +
+        "telefono, correo" +
+    "];" +
+    "fechaRegistro"
+)
 public class Cliente {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 80)
-    private String nombre;
+    @Column(length = 80, nullable = false)
+    @NotBlank(message = "El nombre del cliente es obligatorio")
+    String nombre;
 
     @Required
-    @Column(length = 8)
-    private String dni;
+    @Column(length = 8, nullable = false)
+    @Pattern(regexp = "\\d{8}", message = "El DNI debe tener exactamente 8 dígitos numéricos")
+    String dni;
 
     @Column(length = 11)
-    private String ruc;
+    @Pattern(regexp = "(\\d{11})?", message = "El RUC debe tener exactamente 11 dígitos numéricos")
+    String ruc;
 
     @Column(length = 100)
-    private String razonSocial;
+    String razonSocial;
 
     @Required
-    @DefaultValueCalculator(value = org.openxava.calculators.EnumCalculator.class, 
-        properties = @org.openxava.annotations.PropertyValue(name = "value", value = "REGULAR"))
-    private TipoCliente tipoCliente;
+    @DefaultValueCalculator(value = org.openxava.calculators.EnumCalculator.class,
+        properties = @PropertyValue(name = "value", value = "REGULAR"))
+    @Enumerated(EnumType.STRING)
+    @Column(length = 12, nullable = false)
+    TipoCliente tipoCliente;
 
     public enum TipoCliente {
         REGULAR, MAYORISTA
     }
 
     @Column(length = 120)
-    private String direccion;
+    String direccion;
 
     @Column(length = 15)
-    private String telefono;
+    @Pattern(regexp = "(\\d{6,15})?", message = "El teléfono debe contener entre 6 y 15 dígitos")
+    String telefono;
 
     @Column(length = 60)
-    private String correo;
+    @Email(message = "El correo electrónico no tiene un formato válido")
+    String correo;
 
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private java.util.Date fechaRegistro;
-
-    @Depends("id")
     @ReadOnly
-    @Money
-    public double getMontoTotalGastado() {
-        return 0;
-    }
+    Date fechaRegistro;
 }

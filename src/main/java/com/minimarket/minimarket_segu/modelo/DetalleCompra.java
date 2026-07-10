@@ -1,51 +1,40 @@
 package com.minimarket.minimarket_segu.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.AssertTrue;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.Depends;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Money;
-import org.openxava.annotations.ReadOnly;
-import org.openxava.annotations.Required;
+import java.math.BigDecimal;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import lombok.*;
+import org.openxava.annotations.*;
 
-@Entity
+/**
+ * Clase embebida que representa un detalle de compra a proveedor.
+ * Almacena producto, cantidad y precio unitario de compra.
+ */
+@Embeddable
 @Getter @Setter
 public class DetalleCompra {
-    @Id
-    @Hidden
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "producto_id", nullable = false)
     @Required
-    private Compra compra;
-
-    @ManyToOne
-    @Required
-    private Producto producto;
+    @DescriptionsList
+    Producto producto;
 
     @Required
-    private int cantidad;
+    @Min(value = 1, message = "La cantidad de compra debe ser mayor a cero")
+    int cantidad;
 
     @Required
     @Money
-    private double precio;
-    
+    @DecimalMin(value = "0.01", message = "El precio de compra debe ser mayor a cero")
+    @Column(nullable = false, precision = 12, scale = 2)
+    BigDecimal precio;
+
     @Depends("cantidad, precio")
     @ReadOnly
     @Money
-    public double getSubtotal() {
-        return cantidad * precio;
-    }
-    
-    @AssertTrue(message="La cantidad de compra no puede ser negativa o cero")
-    public boolean isCantidadValida() {
-        return cantidad > 0;
+    public BigDecimal getSubtotal() {
+        if (precio == null) return BigDecimal.ZERO;
+        return precio.multiply(BigDecimal.valueOf(cantidad));
     }
 }

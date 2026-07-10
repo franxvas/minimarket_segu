@@ -1,77 +1,104 @@
 package com.minimarket.minimarket_segu.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.AssertTrue;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.Depends;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Money;
-import org.openxava.annotations.ReadOnly;
-import org.openxava.annotations.Required;
+import java.math.BigDecimal;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import lombok.*;
+import org.openxava.annotations.*;
 
+/**
+ * Entidad que representa un producto del minimarket.
+ * Incluye precios de compra, venta y mayorista, stock y relaciones con categoría y marca.
+ */
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(name = "uk_producto_nombre", columnNames = "nombre"),
+    indexes = {@Index(name = "idx_producto_categoria", columnList = "categoria_id"), @Index(name = "idx_producto_marca", columnList = "marca_id"), @Index(name = "idx_producto_stock", columnList = "stock")}
+)
 @Getter @Setter
+@Tab(properties = "nombre, precioVenta, precioMayorista, stock, stockMinimo, categoria.nombre, marca.nombre, ganancia, bajoStock")
+@View(members =
+    "InformacionGeneral [" +
+        "nombre; descripcion" +
+    "];" +
+    "PreciosStock [" +
+        "precioCompra, precioVenta, precioMayorista;" +
+        "stock, stockMinimo; ganancia, bajoStock" +
+    "];" +
+    "Clasificación [" +
+        "categoria; marca" +
+    "]"
+)
 public class Producto {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 50)
-    private String nombre;
+    @Column(length = 50, nullable = false)
+    @NotBlank(message = "El nombre del producto es obligatorio")
+    String nombre;
 
     @Column(length = 200)
-    private String descripcion;
+    String descripcion;
 
     @Required
     @Money
-    private double precioCompra;
+    @DecimalMin(value = "0.00", message = "El precio de compra no puede ser negativo")
+    @Column(nullable = false, precision = 12, scale = 2)
+    BigDecimal precioCompra;
 
     @Required
     @Money
-    private double precioVenta;
+    @DecimalMin(value = "0.01", message = "El precio de venta debe ser mayor a cero")
+    @Column(nullable = false, precision = 12, scale = 2)
+    BigDecimal precioVenta;
 
     @Required
     @Money
-    private double precioMayorista;
+    @DecimalMin(value = "0.00", message = "El precio mayorista no puede ser negativo")
+    @Column(nullable = false, precision = 12, scale = 2)
+    BigDecimal precioMayorista;
 
     @Required
-    private int stock;
+    @Min(value = 0, message = "El stock no puede ser negativo")
+    int stock;
 
-    @ManyToOne
     @Required
-    private CategoriaProducto categoria;
+    @Min(value = 0, message = "El stock minimo no puede ser negativo")
+    int stockMinimo;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id", nullable = false)
     @Required
-    private Marca marca;
-    
-    @AssertTrue(message="El precio de compra no puede ser negativo")
-    public boolean isPrecioCompraValido() {
-        return precioCompra >= 0;
-    }
-    
-    @AssertTrue(message="El precio de venta no puede ser negativo")
-    public boolean isPrecioVentaValido() {
-        return precioVenta >= 0;
-    }
+    @DescriptionsList
+    CategoriaProducto categoria;
 
-    @AssertTrue(message="El precio mayorista no puede ser negativo")
-    public boolean isPrecioMayoristaValido() {
-        return precioMayorista >= 0;
-    }
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "marca_id", nullable = false)
+    @Required
+    @DescriptionsList
+    Marca marca;
 
     @Depends("precioCompra, precioVenta")
     @ReadOnly
     @Money
-    public double getGanancia() {
-        return precioVenta - precioCompra;
+    public BigDecimal getGanancia() {
+        if (precioVenta == null || precioCompra == null) return BigDecimal.ZERO;
+        return precioVenta.subtract(precioCompra);
+    }
+
+    @AssertTrue(message = "El precio de venta debe ser mayor o igual al precio de compra")
+    public boolean isPrecioVentaMayorQueCompra() {
+        if (precioVenta == null || precioCompra == null) return true;
+        return precioVenta.compareTo(precioCompra) >= 0;
+    }
+
+    @Depends("stock, stockMinimo")
+    @ReadOnly
+    public boolean isBajoStock() {
+        return stock <= stockMinimo;
     }
 }

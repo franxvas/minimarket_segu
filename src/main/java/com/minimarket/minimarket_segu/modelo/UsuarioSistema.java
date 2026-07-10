@@ -1,51 +1,60 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.minimarket.minimarket_segu.modelo;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Required;
+import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
+
 /**
- *
- * @author segun
+ * Entidad que representa un usuario del sistema con credenciales de acceso.
+ * Vinculado a un Empleado.
  */
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(name = "uk_usuario_username", columnNames = "username"),
+    indexes = @Index(name = "idx_usuario_empleado", columnList = "empleado_id")
+)
 @Getter @Setter
+@View(members =
+    "Credenciales [" +
+        "username; password" +
+    "];" +
+    "empleado;" +
+    "estado, fechaRegistro, ultimoAcceso"
+)
 public class UsuarioSistema {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 30)
-    private String username;
+    @Column(length = 30, nullable = false)
+    @Pattern(regexp = "[A-Za-z0-9._-]{4,30}", message = "El usuario debe tener entre 4 y 30 caracteres validos")
+    String username;
 
     @Required
-    @Column(length = 100)
-    private String password;
+    @Column(length = 100, nullable = false)
+    @Size(min = 8, max = 100, message = "La contrasena debe tener al menos 8 caracteres")
+    String password;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "empleado_id", nullable = false)
     @Required
-    private Empleado empleado;
+    @DescriptionsList
+    Empleado empleado;
 
     @Required
-    private boolean estado;
+    boolean estado;
 
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fechaRegistro;
+    @ReadOnly
+    Date fechaRegistro;
 
-    private Date ultimoAcceso;
+    @ReadOnly
+    Date ultimoAcceso;
 }

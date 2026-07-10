@@ -1,47 +1,39 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.minimarket.minimarket_segu.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import org.openxava.annotations.DefaultValueCalculator;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.Required;
+import java.util.Date;
+import javax.persistence.*;
+import lombok.*;
+import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentDateCalculator;
 
 /**
- *
- * @author segun
+ * Entidad que representa una marca de productos.
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name = "uk_marca_nombre", columnNames = "nombre"))
 @Getter @Setter
 public class Marca {
+
     @Id
     @Hidden
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Required
-    @Column(length = 40)
-    private String nombre;
+    @Column(length = 40, nullable = false)
+    String nombre;
 
     @Column(length = 40)
-    private String paisOrigen;
+    String paisOrigen;
 
     @Column(length = 150)
-    private String descripcion;
+    String descripcion;
 
     @Required
-    private boolean estado;
+    boolean estado;
 
     @Required
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private java.util.Date fechaRegistro;
+    @ReadOnly
+    Date fechaRegistro;
 }
