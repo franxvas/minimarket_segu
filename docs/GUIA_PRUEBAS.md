@@ -1,6 +1,6 @@
 # Guia de pruebas
 
-El repositorio exige JUnit 4, `ModuleTestBase` y la primera linea `login("admin", "admin")`. Para esta entrega el usuario autorizo expresamente su ejecucion con Maven.
+El repositorio exige JUnit 4, `ModuleTestBase` y la primera linea `login("admin", "admin")`.
 
 1. Inicie la aplicacion en el puerto 8080.
 2. Sin ejecutar `clean` mientras el servidor esta activo, ejecute `mvn verify`.

@@ -1,6 +1,6 @@
 # Matriz oficial de cumplimiento
 
-Fuente: `Lista de cotejo.pdf` y `Rubrica de Informe Academico.pdf`, entregadas por el usuario el 10 de julio de 2026.
+Fuente: `Lista de cotejo.pdf` y `Rubrica de Informe Academico.pdf`, entregadas por el docente.
 
 ## Lista de cotejo (10 criterios)
 
